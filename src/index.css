@@ -121,3 +121,21 @@ button{
 .align-items-center{
   align-items: center;
 }
+.navbar{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+html,
+body,
+#root
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
