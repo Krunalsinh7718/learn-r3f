@@ -109,3 +109,15 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+button{
+  min-height: 33px;
+}
+.d-flex{
+  display: flex;
+}
+.gap-30{
+  gap: 30px;
+}
+.align-items-center{
+  align-items: center;
+}
