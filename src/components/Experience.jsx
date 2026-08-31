@@ -6,12 +6,17 @@ import CustomObject from './CustomObject';
 
 export default function Experience() {
     const { camera, gl } = useThree()
-    const group = useRef()
+    const group1 = useRef()
     const box = useRef()
+    const sphere = useRef()
+    const spherePos = [3,0,1];
 
     useFrame((state, delta) => {
-        group.current.rotation.y += delta
-        box.current.rotation.x += delta
+         const angle = state.clock.elapsedTime
+        group1.current.rotation.y = angle * 0.1;
+        // box.current.rotation.x = angle;
+        sphere.current.position.x = spherePos[0] + Math.sin(angle * 1.5) * 0.8;
+        sphere.current.position.z = spherePos[1] + Math.cos(angle * 1.5) * 0.8;
     })
 
     return <>
@@ -22,10 +27,9 @@ export default function Experience() {
           maxDistance={10}
         />
         <directionalLight position={ [ 1, 2, 3 ] }  intensity={ 4.5 }/>
-        <group ref={group}>
+          
+        <group ref={group1}>
             <mesh
-                rotation-y={Math.PI * 0.25}
-                position-x={0}
                 scale={1.5}
                 ref={box}
                 >
@@ -34,7 +38,7 @@ export default function Experience() {
                     color="mediumpurple"
                     wireframe={true} />
             </mesh>
-            <mesh position={[2, 0, 1]} scale={0.5}>
+            <mesh position={spherePos} scale={0.5} ref={sphere}>
                 <sphereGeometry />
                 <meshStandardMaterial color={'gold'} />
             </mesh>

@@ -127,6 +127,18 @@ button{
   left: 0;
   right: 0;
   width: 100%;
+  background-color: #eeeeee18;
+  display: flex;
+  color: #000;
+  justify-content: center;
+  gap: 10px;
+  z-index: 1;
+  a{
+    color: #fff;
+    padding: 10px;
+    text-decoration: none;
+    cursor: pointer;
+  }
 }
 html,
 body,

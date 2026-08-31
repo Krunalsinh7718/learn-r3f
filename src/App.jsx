@@ -14,6 +14,7 @@ function App() {
         <Route path="/people" element={<People />} />
         <Route path="/people" element={<People />} />
         <Route path="/testRTF" element={<TestRTF />} />
+        <Route path="/" element={<TestRTF />} />
       </Routes>
     </BrowserRouter>
   );
