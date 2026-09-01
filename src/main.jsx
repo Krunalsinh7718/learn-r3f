@@ -3,10 +3,12 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import Drei from './components/Drei.jsx'
+import { Leva } from 'leva'
 
 createRoot(document.getElementById('root')).render(
-  
-    // <App />
-    <Drei />
+     <StrictMode>
+        <Leva collapsed />
+        <App />
+     </StrictMode>
   
 )

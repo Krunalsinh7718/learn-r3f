@@ -3,6 +3,7 @@ import Hello from "./components/Hello.jsx";
 import People from "./components/People.jsx";
 import Navbar from "./Navbar.jsx";
 import TestRTF from "./components/TestRTF.jsx";
+import Drei from "./components/Drei.jsx";
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
         <Route path="/people" element={<People />} />
         <Route path="/people" element={<People />} />
         <Route path="/testRTF" element={<TestRTF />} />
-        <Route path="/" element={<TestRTF />} />
+        <Route path="/drei" element={<Drei/>} />
       </Routes>
     </BrowserRouter>
   );
