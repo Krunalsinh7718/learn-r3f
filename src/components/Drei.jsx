@@ -7,6 +7,8 @@ import { OrbitControls, TransformControls, PivotControls, Html } from '@react-th
 export default function Drei() {
 
     const transObject = useRef();
+    const box = useRef();
+    const circle = useRef();
     return <>
         <Canvas>
             <OrbitControls
@@ -25,14 +27,18 @@ export default function Drei() {
             <mesh
                 scale={1.5}
                 position={[3, 0, 0]}
+                ref={box}
             >
                 <boxGeometry />
                 <meshStandardMaterial
                     color="mediumpurple"
                 />
                 <Html
-                    position={[0, 0.5, 0]}
+                    position={[0, 1, 0]}
                     wrapperClass="floating-label"
+                    occlude={[box,circle]}
+                    center
+                    distanceFactor={ 8 }
                 >Test</Html>
             </mesh>
             <PivotControls
@@ -41,6 +47,7 @@ export default function Drei() {
             >
                 <mesh
                     position={[0, 0, 2]}
+                    ref={circle}
                 >
                     <sphereGeometry />
                     <meshStandardMaterial color={'gold'} />
