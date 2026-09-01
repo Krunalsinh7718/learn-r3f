@@ -1,11 +1,10 @@
 import * as THREE from 'three';
-import { useFrame, extend, useThree } from '@react-three/fiber'
+import { useFrame } from '@react-three/fiber'
 import { useRef } from 'react';
 import { OrbitControls } from '@react-three/drei';
 import CustomObject from './CustomObject';
 
 export default function Experience() {
-    const { camera, gl } = useThree()
     const group1 = useRef()
     const box = useRef()
     const sphere = useRef()
@@ -14,9 +13,14 @@ export default function Experience() {
     useFrame((state, delta) => {
          const angle = state.clock.elapsedTime
         group1.current.rotation.y = angle * 0.1;
-        // box.current.rotation.x = angle;
         sphere.current.position.x = spherePos[0] + Math.sin(angle * 1.5) * 0.8;
         sphere.current.position.z = spherePos[1] + Math.cos(angle * 1.5) * 0.8;
+
+        // const camera = state.camera;
+        // camera.position.x = Math.sin(angle * 1.5) * 3
+        // camera.position.z = Math.cos(angle * 1.5) * 3
+        // camera.lookAt(0,0,0)
+        
     })
 
     return <>
