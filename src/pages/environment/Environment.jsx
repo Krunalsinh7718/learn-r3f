@@ -23,7 +23,7 @@ import { useControls, button } from 'leva'
 import { Perf } from 'r3f-perf'
 
 
-export default function Drei() {
+export default function Environment() {
 
     const transObject = useRef();
     const box = useRef();
@@ -55,7 +55,7 @@ export default function Drei() {
     })
      const {  perfVisible } = useControls('Perf',{
         
-        perfVisible: false,
+        perfVisible: true,
         
     })
     // console.log(choice);

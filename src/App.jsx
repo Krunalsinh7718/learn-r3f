@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router";
-import Hello from "./components/Hello.jsx";
-import People from "./components/People.jsx";
+import Hello from "./pages/hello/Hello.jsx";
+import People from "./pages/people/People.jsx";
 import Navbar from "./Navbar.jsx";
-import TestRTF from "./components/TestRTF.jsx";
-import Drei from "./components/Drei.jsx";
+import TestRTF from "./pages/rtf/TestRTF.jsx";
+import Drei from "./pages/drei/Drei.jsx";
 
 
 function App() {
@@ -12,7 +12,6 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/hello" element={<Hello />} />
-        <Route path="/people" element={<People />} />
         <Route path="/people" element={<People />} />
         <Route path="/testRTF" element={<TestRTF />} />
         <Route path="/drei" element={<Drei/>} />
