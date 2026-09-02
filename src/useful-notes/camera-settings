@@ -1,0 +1,46 @@
+    const { posX, posY, posZ} = useControls('camera', {
+        posX : {
+            value : 0,
+            min: -5,
+            max: 5,
+            step: 0.01
+        },
+        posY : {
+            value : 0,
+            min: -5,
+            max: 5,
+            step: 0.01
+        },
+        posZ : {
+            value : 0,
+            min: -5,
+            max: 5,
+            step: 0.01
+        },
+    })
+
+    useFrame((state, delta) => {
+        // const camera = state.camera;
+        // camera.position.x = posX
+        // camera.position.y = posY
+        // camera.position.z = posZ
+    })
+
+
+
+    //////////////////////////////////////////////////////////////
+
+
+    <Canvas
+                camera={{
+                    fov: 45,
+                    near: 0.1,
+                    far: 200,
+                    position: [0, 4, 8]
+                }}
+            >
+                <Perf position="top-left" />
+                <EnvInner />
+    
+    
+            </Canvas>
