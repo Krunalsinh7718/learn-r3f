@@ -17,7 +17,7 @@ export default function Environments() {
                 far: 200,
                 position: [0, 4, 8]
             }}
-            shadows={false}
+            shadows={true}
         >
             <Perf position="top-left" />
             <EnvInner />
