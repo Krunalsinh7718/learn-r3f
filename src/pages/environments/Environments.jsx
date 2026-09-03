@@ -9,7 +9,7 @@ export default function Environments() {
    
 
     return <>
-        <Leva collapsed />
+        <Leva  />
         <Canvas
             camera={{
                 fov: 45,
@@ -17,7 +17,7 @@ export default function Environments() {
                 far: 200,
                 position: [0, 4, 8]
             }}
-            shadows="soft"
+            shadows={false}
         >
             <Perf position="top-left" />
             <EnvInner />
