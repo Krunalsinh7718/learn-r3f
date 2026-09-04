@@ -8,6 +8,7 @@ function Navbar() {
       <Link to="/testRTF">TestRTF</Link>
       <Link to="/drei">Drei</Link>
       <Link to="/environments">Environments</Link>
+      <Link to="/models">Models</Link>
     </nav>
   );
 }
