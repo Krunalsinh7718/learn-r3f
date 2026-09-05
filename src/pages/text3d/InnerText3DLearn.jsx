@@ -13,32 +13,23 @@ export default function InnerText3DLearn() {
     const torusGeometry = new THREE.TorusGeometry();
     const torusMaterial = new THREE.MeshMatcapMaterial();
 
+    const donutArr = useRef([]);
+
     useEffect(() => {
         torusMaterial.matcap = matCapTexture;
         torusMaterial.needsUpdate = true;
 
         matCapTexture.colorSpace = THREE.SRGBColorSpace;
         matCapTexture.needsUpdate = true;
+    }, [])
 
-    },[])
-
-    useFrame((state,delta) => {
-        for(const child of donutsGroup.current.children){
-
+    useFrame((state, delta) => {
+        for (const child of donutArr.current) {
             child.rotation.y += delta * 0.2 * Math.sin(child.position.x);
         }
-
-        
-        
     })
 
-
-
-
-
     return <>
-        {/* <torusGeometry ref={setTorusGeometry}/>
-        <meshMatcapMaterial matcap={matCapTexture} ref={setTorusMaterial}/> */}
         <OrbitControls />
         <Center>
             <Text3D
@@ -56,32 +47,28 @@ export default function InnerText3DLearn() {
                 <meshMatcapMaterial matcap={matCapTexture} />
             </Text3D>
         </Center>
-        <group ref={donutsGroup}>
-            {
-                [...Array(100)].map((e, index) =>
-
-                    <mesh 
-                        key={index}
-                        geometry={ torusGeometry}
-                        material={torusMaterial}
-                        position={[
-                            (Math.random() - 0.5) * 10,
-                            (Math.random() - 0.5) * 10,
-                            (Math.random() - 0.5) * 10
-                        ]} 
-                        scale={ 0.2 + Math.random() * 0.2 }
-                        rotation={[
-                            Math.random() * Math.PI ,
-                            Math.random() * Math.PI ,
-                            0
-                        ]}
-                />
-                        
-                
-                )
-            }
-        </group>
-
-
+        {
+            [...Array(100)].map((e, index) =>
+                <mesh
+                    key={index}
+                    geometry={torusGeometry}
+                    material={torusMaterial}
+                    position={[
+                        (Math.random() - 0.5) * 10,
+                        (Math.random() - 0.5) * 10,
+                        (Math.random() - 0.5) * 10
+                    ]}
+                    scale={0.2 + Math.random() * 0.2}
+                    rotation={[
+                        Math.random() * Math.PI,
+                        Math.random() * Math.PI,
+                        0
+                    ]}
+                    ref={(element) => donutArr.current[index] = element}
+                >
+                    
+                </mesh>
+            )
+        }
     </>
 }
