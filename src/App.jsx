@@ -7,6 +7,7 @@ import Drei from "./pages/drei/Drei.jsx";
 import Environments from "./pages/environments/Environments.jsx";
 import Models from "./pages/model-import/Models.jsx";
 import Text3DLearn from "./pages/text3d/Text3DLearn.jsx";
+import PortalMain from "./pages/portal/PortalMain.jsx";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/environments" element={<Environments/>} />
         <Route path="/models" element={<Models />} />
         <Route path="/text3d" element={<Text3DLearn />} />
+        <Route path="/portal" element={<PortalMain />} />
       </Routes>
     </BrowserRouter>
   );

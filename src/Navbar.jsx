@@ -10,6 +10,7 @@ function Navbar() {
       <Link to="/environments">Environments</Link>
       <Link to="/models">Models</Link>
       <Link to="/text3d">Text 3D</Link>
+      <Link to="/portal">Portal</Link>
     </nav>
   );
 }
