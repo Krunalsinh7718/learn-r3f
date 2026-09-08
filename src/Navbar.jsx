@@ -11,6 +11,9 @@ function Navbar() {
       <Link to="/models">Models</Link>
       <Link to="/text3d">Text 3D</Link>
       <Link to="/portal">Portal</Link>
+      <Link to="/events">Events</Link>
+      <Link to="/post-processing">Post Processing</Link>
+      
     </nav>
   );
 }

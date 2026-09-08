@@ -8,6 +8,8 @@ import Environments from "./pages/environments/Environments.jsx";
 import Models from "./pages/model-import/Models.jsx";
 import Text3DLearn from "./pages/text3d/Text3DLearn.jsx";
 import PortalMain from "./pages/portal/PortalMain.jsx";
+import EventsMain from "./pages/events/EventsMain.jsx";
+import Main from "./pages/post-processing/Main.jsx";
 
 
 function App() {
@@ -23,6 +25,8 @@ function App() {
         <Route path="/models" element={<Models />} />
         <Route path="/text3d" element={<Text3DLearn />} />
         <Route path="/portal" element={<PortalMain />} />
+        <Route path="/events" element={<EventsMain />} />
+        <Route path="/post-processing" element={<Main />} />
       </Routes>
     </BrowserRouter>
   );
