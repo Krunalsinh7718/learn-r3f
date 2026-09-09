@@ -5,7 +5,8 @@ import {
     Vignette,
     Glitch,
     Noise,
-    Bloom
+    Bloom,
+    DepthOfField
 } from "@react-three/postprocessing";
 import { useControls } from "leva";
 import { 
@@ -13,6 +14,8 @@ import {
     BlendFunction,
     GlitchMode
 } from "postprocessing";
+import Drunk from "./Drunk";
+import { useEffect, useRef } from "react";
 
 // console.log(GlitchMode);
 
@@ -29,7 +32,7 @@ export default function Experiance() {
 
     const {blandFunction} = useControls("Bland Function",{
         blandFunction : {
-            value : BlendFunction.NORMAL,
+            value : BlendFunction.COLOR_BURN,
             options : BlendFunction
         }
     })
@@ -51,7 +54,7 @@ export default function Experiance() {
 
     const {bloomIntensity, luminanceThreshold} = useControls("Bloom",{
         bloomIntensity : {
-            value : 0.5,
+            value : 1.9,
             min: 0,
             max: 5,
             step: 0.1
@@ -65,23 +68,67 @@ export default function Experiance() {
     })
     const {colorR, colorG, colorB} = useControls("Bloom Color Channels",{
         colorR : {
-            value : 1,
+            value : 4,
             min: 0,
             max: 10,
             step: 0.1
         },
         colorG : {
-            value : 1,
+            value : 0.5,
             min: 0,
             max: 10,
             step: 0.1
         },
         colorB : {
-            value : 1,
+            value : 0.1,
             min: 0,
             max: 10,
             step: 0.1
         }
+    })
+
+
+    const {focusDistance, focalLength, bokehScale} = useControls("Depth of field",{
+        focusDistance : {
+            value : 0,
+            min: 0,
+            max: 1,
+            step: 0.001
+        },
+        focalLength : {
+            value : 0.07,
+            min: 0,
+            max: 1,
+            step: 0.001
+        },
+        bokehScale : {
+            value : 6,
+            min: 0,
+            max: 10,
+            step: 0.1
+        }
+    })
+
+    const drunkRef = useRef();
+
+    useEffect(() => {
+        console.log(drunkRef.current);
+    },[])
+
+    const drunkProps = useControls("Drunk Effect",{
+        frequency : {
+            value : 16.4,
+            min: 0,
+            max: 20,
+            step: 0.1
+        },
+        amplitude : {
+            value : 0.02,
+            min: 0,
+            max: 1,
+            step: 0.001
+        },
+       
     })
 
 
@@ -94,20 +141,21 @@ export default function Experiance() {
         />
         <mesh>
             <boxGeometry />
-            <meshBasicMaterial 
+            {/* <meshBasicMaterial 
                 color={ [ colorR, colorG, colorB ] } 
-                // color="#ffffff"
+                // color="#0ff"
                 // emissive="orange"
-                emissiveIntensity={ 2 }
-            />
+                // emissiveIntensity={ 2 }
+            /> */}
+            <meshStandardMaterial color="#e44720"/>
         </mesh>
 
-        <mesh position-x="-2" scale={0.6} >
+        <mesh position-x="-4" scale={0.6} >
             <sphereGeometry />
             <meshStandardMaterial color="#2a9d8f"/>
         </mesh>
 
-        <mesh position-x="2" scale={0.4} >
+        <mesh position-x="4" scale={0.4} >
             <torusKnotGeometry />
             <meshStandardMaterial color="#aee96a"/>
         </mesh>
@@ -120,18 +168,29 @@ export default function Experiance() {
                 offset={ 0.3 }
                 darkness={ 0.9 }
                 blendFunction={ blandFunction }
-             /> */}
-             {/* <Glitch 
+             />
+             <Glitch 
                 delay={ [ 0.5, 1 ] }
                 duration={ [ 0.1, 0.3 ] }
                 strength={ [ 0.2, 0.4 ] }
                 mode={ glitchMode }
-             /> */}
-             {/* <Noise blendFunction={noiseBlandFunction}/> */}
+             />
+             <Noise blendFunction={noiseBlandFunction}/>
              <Bloom 
                 luminanceThreshold={ luminanceThreshold } 
                 mipmapBlur 
                 intensity={ bloomIntensity }
+            />
+            <DepthOfField 
+                focusDistance={ focusDistance }
+                focalLength={ focalLength }
+                bokehScale={ bokehScale }
+            /> */}
+            <Drunk 
+                ref={ drunkRef }
+                {...drunkProps}
+                blendFunction={ blandFunction }
+              
             />
             <ToneMapping mode={toneMapingMode}/>
         </EffectComposer>
