@@ -9,7 +9,8 @@ import Models from "./pages/model-import/Models.jsx";
 import Text3DLearn from "./pages/text3d/Text3DLearn.jsx";
 import PortalMain from "./pages/portal/PortalMain.jsx";
 import EventsMain from "./pages/events/EventsMain.jsx";
-import Main from "./pages/post-processing/Main.jsx";
+import PostProcessingMain from "./pages/post-processing/PostProcessingMain.jsx";
+import PortfolioMain from "./pages/portfolio/PortfolioMain.jsx";
 
 
 function App() {
@@ -26,7 +27,9 @@ function App() {
         <Route path="/text3d" element={<Text3DLearn />} />
         <Route path="/portal" element={<PortalMain />} />
         <Route path="/events" element={<EventsMain />} />
-        <Route path="/post-processing" element={<Main />} />
+        <Route path="/post-processing" element={<PostProcessingMain />} />
+        <Route path="/portfolio" element={<PortfolioMain />} />
+        
       </Routes>
     </BrowserRouter>
   );

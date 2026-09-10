@@ -2,7 +2,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import Experiance from "./Experiance";
 import { Perf } from "r3f-perf";
 
-export default function Main() {
+export default function PostProcessingMain() {
    
     return <>
         <Canvas

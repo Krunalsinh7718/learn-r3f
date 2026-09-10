@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krunalsinh Vaghela | Portfolio</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #0a0f1c;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --accent-1: #00f2fe;
+            --accent-2: #4facfe;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(79, 172, 254, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(0, 242, 254, 0.08), transparent 25%);
+            background-attachment: fixed;
+        }
+
+        h1, h2, h3, h4, h5, h6, .brand-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 30px -10px rgba(79, 172, 254, 0.2);
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+
+        .skill-badge {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-main);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-badge:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--accent-2);
+            transform: scale(1.05);
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-1), var(--accent-2), transparent);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.4rem;
+            top: 0.3rem;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--bg-dark);
+            border: 3px solid var(--accent-1);
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: var(--accent-2);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .contact-link {
+            color: var(--text-main);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .contact-link:hover {
+            color: var(--accent-1);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+            .hero-section { min-height: auto; padding-top: 6rem; }
+        }
+        @media (min-width: 769px) {
+            .hero-title { font-size: 4rem; line-height: 1.1; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background: rgba(10, 15, 28, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05);">
+        <div class="container">
+            <a class="navbar-brand brand-font fw-bold" href="#">KV<span class="text-gradient">.</span></a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero-section row align-items-center">
+            <div class="col-lg-8">
+                <p class="text-accent mb-2" style="color: var(--accent-2); font-family: 'Space Grotesk', sans-serif; letter-spacing: 2px; text-transform: uppercase;">Hello, I am</p>
+                <h1 class="hero-title fw-bold mb-3">Krunalsinh Vaghela</h1>
+                <h2 class="h3 text-muted mb-4">Front End Developer / Web Designer</h2>
+                
+                <p class="lead mb-5" style="color: var(--text-muted); max-width: 700px; line-height: 1.8;">
+                    As a passionate Front End Developer with 8 years of experience, I bring a strong proficiency in modern web technologies such as HTML5, CSS3, and JavaScript frameworks like React. My portfolio showcases my commitment to creating responsive and visually engaging user interfaces. I am eager to contribute my skills and collaborate with your team to deliver exceptional digital experiences.
+                </p>
+
+                <div class="d-flex flex-wrap gap-4 mb-5">
+                    <a href="mailto:Krunal5281@gmail.com" class="contact-link">
+                        <i class="fa-solid fa-envelope fs-5"></i> Krunal5281@gmail.com
+                    </a>
+                    <a href="tel:+919033569463" class="contact-link">
+                        <i class="fa-solid fa-phone fs-5"></i> +91 90335 69463
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5 pt-5">
+            <h3 class="mb-4 brand-font text-gradient d-inline-block">Technical Arsenal</h3>
+            <div class="d-flex flex-wrap gap-3">
+                <span class="skill-badge"><i class="fa-brands fa-html5 text-danger"></i> HTML</span>
+                <span class="skill-badge"><i class="fa-brands fa-css3-alt text-primary"></i> CSS / SCSS</span>
+                <span class="skill-badge"><i class="fa-brands fa-js text-warning"></i> Javascript</span>
+                <span class="skill-badge"><i class="fa-brands fa-react text-info"></i> React / Next.js</span>
+                <span class="skill-badge"><i class="fa-brands fa-angular text-danger"></i> Angular.js</span>
+                <span class="skill-badge"><i class="fa-brands fa-vuejs text-success"></i> Vue</span>
+                <span class="skill-badge"><i class="fa-solid fa-mobile-screen text-primary"></i> Ionic</span>
+                <span class="skill-badge"><i class="fa-solid fa-code"></i> jQuery</span>
+                <span class="skill-badge"><i class="fa-solid fa-diagram-project"></i> Redux</span>
+                <span class="skill-badge"><i class="fa-brands fa-bootstrap text-purple"></i> Bootstrap</span>
+                <span class="skill-badge"><i class="fa-solid fa-wind text-info"></i> Tailwindcss</span>
+                <span class="skill-badge"><i class="fa-brands fa-google text-warning"></i> Firebase</span>
+                <span class="skill-badge"><i class="fa-brands fa-figma text-danger"></i> Figma</span>
+                <span class="skill-badge"><i class="fa-solid fa-pen-nib text-primary"></i> Adobe XD / Photoshop / Illustrator</span>
+                <span class="skill-badge"><i class="fa-solid fa-cloud"></i> AppWrite</span>
+                <span class="skill-badge"><i class="fa-solid fa-layer-group"></i> Material design</span>
+            </div>
+        </section>
+
+        <section class="row mb-5 pt-5">
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <h3 class="mb-5 brand-font text-gradient d-inline-block">Experience</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2022 - PRESENT</div>
+                        <h4 class="h5 fw-bold mb-1">Front End Developer / Web Designer</h4>
+                        <p class="text-muted mb-0">Dev Information Technology Ltd</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2020 - 2022</div>
+                        <h4 class="h5 fw-bold mb-1">Front End Developer</h4>
+                        <p class="text-muted mb-0">Zignuts Technolab Private limited</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2018 - 2020</div>
+                        <h4 class="h5 fw-bold mb-1">Front End Developer / Web Designer</h4>
+                        <p class="text-muted mb-0">ADSOM GLOBALTECH Private limited</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2016 - 2018</div>
+                        <h4 class="h5 fw-bold mb-1">Web Designer</h4>
+                        <p class="text-muted mb-0">INCORE TECHONOLOGIES LLP</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <h3 class="mb-5 brand-font text-gradient d-inline-block">Education</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2015</div>
+                        <h4 class="h5 fw-bold mb-1">M.C.A. (Master of Computer Applications)</h4>
+                        <p class="text-muted mb-0">Ganpat university, Kherava</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2012</div>
+                        <h4 class="h5 fw-bold mb-1">B. Com (Bachelor of Commerce)</h4>
+                        <p class="text-muted mb-0">Gujarat university, Gandhinagar</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2009</div>
+                        <h4 class="h5 fw-bold mb-1">Higher Secondary (Commerce)</h4>
+                        <p class="text-muted mb-0">Gujarat secondary and higher secondary education board</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5 pt-5">
+            <h3 class="mb-5 brand-font text-gradient d-inline-block">Featured Projects</h3>
+            <div class="project-grid">
+                
+                <div class="glass-card">
+                    <h4 class="h5 fw-bold mb-2">Ravel Trips</h4>
+                    <p class="text-muted small mb-3">Next.js &bull; SCSS</p>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Simplifies trip planning by offering tailored suggestions and easy sharing of travel adventures on the fly.</p>
+                </div>
+
+                <div class="glass-card">
+                    <h4 class="h5 fw-bold mb-2">New2</h4>
+                    <p class="text-muted small mb-3">Next.js &bull; SCSS</p>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Comprehensive tool for migrants relocating, offering support and resources to facilitate integration.</p>
+                </div>
+
+                <div class="glass-card">
+                    <h4 class="h5 fw-bold mb-2">Lasher</h4>
+                    <p class="text-muted small mb-3">React.js &bull; SCSS</p>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Hardware Tools application focusing on efficient styling and enhanced user interface design.</p>
+                </div>
+
+                <div class="glass-card">
+                    <h4 class="h5 fw-bold mb-2">ES Live</h4>
+                    <p class="text-muted small mb-3">jQuery &bull; Vuexy</p>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Comprehensive management of student and teacher data, test schedules, and analysis graphs.</p>
+                </div>
+
+                <div class="glass-card">
+                    <h4 class="h5 fw-bold mb-2">Record Link</h4>
+                    <p class="text-muted small mb-3">React.js &bull; SCSS</p>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Connects dental practice management systems, doctor profile management, and billing details.</p>
+                </div>
+
+                <div class="glass-card">
+                    <h4 class="h5 fw-bold mb-2">Dino</h4>
+                    <p class="text-muted small mb-3">Angular &bull; SCSS</p>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">Post-trading application developed with Angular and SCSS support for efficient styling.</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="row mb-5 pt-5 pb-5">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <div class="glass-card">
+                    <h3 class="h4 mb-4 brand-font text-gradient d-inline-block">Research & Learning</h3>
+                    <ul class="list-unstyled mb-0" style="color: var(--text-muted);">
+                        <li class="mb-3">
+                            <strong class="text-light">Blog App Project</strong><br>
+                            Developed with latest React and Firebase features.
+                        </li>
+                        <li>
+                            <strong class="text-light">Codepen Code Blocks</strong><br>
+                            <a href="https://codepen.io/krunal5281" target="_blank" class="contact-link small mt-1">codepen.io/krunal5281 <i class="fa-solid fa-arrow-up-right-from-square ms-1" style="font-size: 0.8rem;"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="glass-card d-flex flex-column justify-content-center">
+                    <h3 class="h4 mb-4 brand-font text-gradient d-inline-block">Hobbies</h3>
+                    <div class="d-flex flex-wrap gap-3">
+                        <span class="skill-badge px-4 py-2 fs-6"><i class="fa-solid fa-film"></i> Movies</span>
+                        <span class="skill-badge px-4 py-2 fs-6"><i class="fa-solid fa-utensils"></i> Food</span>
+                        <span class="skill-badge px-4 py-2 fs-6"><i class="fa-solid fa-music"></i> Music</span>
+                        <span class="skill-badge px-4 py-2 fs-6"><i class="fa-solid fa-paper-plane"></i> Origami</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-4 mt-5" style="border-top: 1px solid rgba(255,255,255,0.05);">
+        <p class="mb-0 text-muted small">&copy; 2026 Krunalsinh Vaghela. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

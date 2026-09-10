@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krunalsinh Vaghela | Front End Developer</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --text-main: #1e293b;
+            --text-muted: #475569;
+            --accent-1: #6366f1;
+            --accent-2: #ec4899;
+            --accent-3: #0ea5e9;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.4);
+            --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            overflow-x: hidden;
+            background: #f0f4f8;
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        .background-animation-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .floating-icon {
+            position: absolute;
+            bottom: -150px;
+            animation: floatUp linear infinite;
+            opacity: 0;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.4; }
+            90% { opacity: 0.4; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+        }
+
+        .fi-1 { left: 5%; font-size: 4rem; color: #e34f26; animation-duration: 25s; animation-delay: 0s; }
+        .fi-2 { left: 25%; font-size: 6rem; color: #1572b6; animation-duration: 35s; animation-delay: -5s; }
+        .fi-3 { left: 50%; font-size: 3.5rem; color: #f7df1e; animation-duration: 22s; animation-delay: -12s; opacity: 0.6 !important; }
+        .fi-4 { left: 75%; font-size: 5rem; color: #61dafb; animation-duration: 28s; animation-delay: -2s; }
+        .fi-5 { left: 90%; font-size: 3rem; color: #dd0031; animation-duration: 30s; animation-delay: -15s; }
+        .fi-6 { left: 15%; font-size: 4.5rem; color: #4fc08d; animation-duration: 26s; animation-delay: -20s; }
+        .fi-7 { left: 65%; font-size: 7rem; color: #764abc; animation-duration: 40s; animation-delay: -8s; }
+        .fi-8 { left: 40%; font-size: 4rem; color: #38b2ac; animation-duration: 24s; animation-delay: -18s; }
+        .fi-9 { left: 85%; font-size: 5.5rem; color: #ffca28; animation-duration: 32s; animation-delay: -25s; }
+        .fi-10 { left: 35%; font-size: 3rem; color: #f24e1e; animation-duration: 21s; animation-delay: -3s; }
+
+        h1, h2, h3, h4, h5, h6, .brand-font {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% auto;
+            animation: gradientFlow 5s ease infinite;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glass-panel {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: var(--glass-shadow);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-panel:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px 0 rgba(31, 38, 135, 0.12);
+        }
+
+        .hero-section {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding-top: 6rem;
+        }
+
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 30px;
+            transform: rotate(-3deg);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 15px 15px 0 rgba(99, 102, 241, 0.2);
+            border: 8px solid white;
+        }
+
+        .profile-img-wrapper:hover .profile-img {
+            transform: rotate(0deg) scale(1.02);
+            box-shadow: 20px 20px 0 rgba(236, 72, 153, 0.3);
+        }
+
+        .skill-badge {
+            background: white;
+            border: 1px solid rgba(0,0,0,0.05);
+            color: var(--text-main);
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .skill-badge:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.08);
+            border-color: var(--accent-1);
+        }
+
+        .timeline-container {
+            border-left: 3px dashed var(--accent-1);
+            padding-left: 2rem;
+            margin-left: 1rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.75rem;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
+            box-shadow: 0 0 0 5px rgba(255,255,255,0.8);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            padding: 2rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .navbar-glass {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.4);
+        }
+
+        @media (max-width: 991px) {
+            .hero-section { text-align: center; padding-top: 8rem; flex-direction: column-reverse; }
+            .profile-img-wrapper { margin-bottom: 3rem; }
+            .timeline-container { border-left: none; padding-left: 0; margin-left: 0; }
+            .timeline-item::before { display: none; }
+            .timeline-item { background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="background-animation-container">
+        <i class="fa-brands fa-html5 floating-icon fi-1"></i>
+        <i class="fa-brands fa-css3-alt floating-icon fi-2"></i>
+        <i class="fa-brands fa-js floating-icon fi-3"></i>
+        <i class="fa-brands fa-react floating-icon fi-4"></i>
+        <i class="fa-brands fa-angular floating-icon fi-5"></i>
+        <i class="fa-brands fa-vuejs floating-icon fi-6"></i>
+        <i class="fa-brands fa-figma floating-icon fi-7"></i>
+        <i class="fa-solid fa-code floating-icon fi-8"></i>
+        <i class="fa-brands fa-bootstrap floating-icon fi-9"></i>
+        <i class="fa-solid fa-cloud floating-icon fi-10"></i>
+    </div>
+
+    <nav class="navbar navbar-expand-lg fixed-top navbar-glass py-3">
+        <div class="container">
+            <a class="navbar-brand brand-font fs-3 text-gradient" href="#">KV.</a>
+            <div class="d-none d-md-flex gap-4 fw-medium">
+                <a href="mailto:Krunal5281@gmail.com" class="text-decoration-none text-main" style="color: var(--text-main);">
+                    <i class="fa-solid fa-envelope text-primary me-1"></i> Krunal5281@gmail.com
+                </a>
+                <a href="tel:+919033569463" class="text-decoration-none text-main" style="color: var(--text-main);">
+                    <i class="fa-solid fa-phone text-success me-1"></i> +91 90335 69463
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero-section row mb-5">
+            <div class="col-lg-7 d-flex flex-column justify-content-center">
+                <div class="glass-panel border-0 bg-transparent shadow-none px-0">
+                    <span class="badge rounded-pill px-3 py-2 mb-4 d-inline-block shadow-sm" style="background: white; color: var(--accent-1); border: 1px solid rgba(99,102,241,0.2); font-size: 0.9rem;">
+                        <i class="fa-solid fa-sparkles me-1"></i> Available for Opportunities
+                    </span>
+                    <h1 class="display-3 brand-font mb-2">Krunalsinh Vaghela</h1>
+                    <h2 class="h3 mb-4 text-gradient">Front End Developer / Web Designer</h2>
+                    
+                    <p class="lead mb-4" style="color: var(--text-muted); line-height: 1.8; font-size: 1.15rem; max-width: 90%;">
+                        As a passionate Front End Developer with 8 years of experience, I bring a strong proficiency in modern web technologies such as HTML5, CSS3, and JavaScript frameworks like React. My portfolio showcases my commitment to creating responsive and visually engaging user interfaces. I am eager to contribute my skills and collaborate with your team to deliver exceptional digital experiences.
+                    </p>
+                    
+                    <div class="d-md-none d-flex flex-column gap-3 mt-4">
+                        <a href="mailto:Krunal5281@gmail.com" class="btn btn-light shadow-sm py-2"><i class="fa-solid fa-envelope text-primary me-2"></i> Email Me</a>
+                        <a href="tel:+919033569463" class="btn btn-light shadow-sm py-2"><i class="fa-solid fa-phone text-success me-2"></i> Call Me</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 d-flex align-items-center justify-content-center profile-img-wrapper">
+                <img src="https://placehold.co/400x400/ffffff/6366f1?text=KV" alt="Krunalsinh Vaghela" class="profile-img">
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <div class="glass-panel">
+                <h3 class="brand-font mb-4 text-gradient d-inline-block">Technical Expertise</h3>
+                <div class="d-flex flex-wrap gap-3 mt-2">
+                    <span class="skill-badge"><i class="fa-brands fa-html5 fs-5" style="color: #e34f26;"></i> HTML</span>
+                    <span class="skill-badge"><i class="fa-brands fa-css3-alt fs-5" style="color: #1572b6;"></i> CSS / SCSS</span>
+                    <span class="skill-badge"><i class="fa-brands fa-js fs-5" style="color: #f7df1e;"></i> Javascript</span>
+                    <span class="skill-badge"><i class="fa-brands fa-react fs-5" style="color: #61dafb;"></i> React</span>
+                    <span class="skill-badge"><i class="fa-solid fa-n fs-5" style="color: #000000;"></i> Next.js</span>
+                    <span class="skill-badge"><i class="fa-brands fa-angular fs-5" style="color: #dd0031;"></i> Angular.js (UI)</span>
+                    <span class="skill-badge"><i class="fa-brands fa-vuejs fs-5" style="color: #4fc08d;"></i> Vue (UI)</span>
+                    <span class="skill-badge"><i class="fa-solid fa-mobile-screen fs-5" style="color: #3880ff;"></i> Ionic (UI)</span>
+                    <span class="skill-badge"><i class="fa-solid fa-code fs-5" style="color: #0769ad;"></i> jQuery</span>
+                    <span class="skill-badge"><i class="fa-solid fa-diagram-project fs-5" style="color: #764abc;"></i> Redux</span>
+                    <span class="skill-badge"><i class="fa-brands fa-bootstrap fs-5" style="color: #7952b3;"></i> Bootstrap</span>
+                    <span class="skill-badge"><i class="fa-solid fa-wind fs-5" style="color: #38b2ac;"></i> Tailwindcss</span>
+                    <span class="skill-badge"><i class="fa-brands fa-figma fs-5" style="color: #f24e1e;"></i> Figma</span>
+                    <span class="skill-badge"><i class="fa-solid fa-pen-nib fs-5" style="color: #31a8ff;"></i> Adobe Photoshop / XD / Illustrator</span>
+                    <span class="skill-badge"><i class="fa-brands fa-google fs-5" style="color: #ffca28;"></i> Firebase</span>
+                    <span class="skill-badge"><i class="fa-solid fa-cloud fs-5" style="color: #f02e65;"></i> AppWrite</span>
+                    <span class="skill-badge"><i class="fa-solid fa-layer-group fs-5" style="color: #757575;"></i> Material Design</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="row mb-5">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="glass-panel h-100">
+                    <h3 class="brand-font mb-5 text-gradient d-inline-block">Experience</h3>
+                    <div class="timeline-container">
+                        <div class="timeline-item">
+                            <span class="badge bg-white text-primary border shadow-sm mb-2 px-3 py-2 rounded-pill">2022 - Present</span>
+                            <h4 class="h5 fw-bold mb-1 mt-2">Front End Developer / Web Designer</h4>
+                            <p class="text-muted fw-medium mb-0">Dev Information Technology Ltd</p>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="badge bg-white text-primary border shadow-sm mb-2 px-3 py-2 rounded-pill">2020 - 2022</span>
+                            <h4 class="h5 fw-bold mb-1 mt-2">Front End Developer</h4>
+                            <p class="text-muted fw-medium mb-0">Zignuts Technolab Private limited</p>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="badge bg-white text-primary border shadow-sm mb-2 px-3 py-2 rounded-pill">2018 - 2020</span>
+                            <h4 class="h5 fw-bold mb-1 mt-2">Front End Developer / Web Designer</h4>
+                            <p class="text-muted fw-medium mb-0">ADSOM GLOBALTECH Private limited</p>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="badge bg-white text-primary border shadow-sm mb-2 px-3 py-2 rounded-pill">2016 - 2018</span>
+                            <h4 class="h5 fw-bold mb-1 mt-2">Web Designer</h4>
+                            <p class="text-muted fw-medium mb-0">INCORE TECHONOLOGIES LLP</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="glass-panel h-100">
+                    <h3 class="brand-font mb-5 text-gradient d-inline-block">Education</h3>
+                    <div class="timeline-container">
+                        <div class="timeline-item">
+                            <span class="badge bg-white text-info border shadow-sm mb-2 px-3 py-2 rounded-pill">2015</span>
+                            <h4 class="h5 fw-bold mb-1 mt-2">M.C.A. (Master of Computer Applications)</h4>
+                            <p class="text-muted fw-medium mb-0">Ganpat university, Kherava</p>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="badge bg-white text-info border shadow-sm mb-2 px-3 py-2 rounded-pill">2012</span>
+                            <h4 class="h5 fw-bold mb-1 mt-2">B. Com (Bachelor of Commerce)</h4>
+                            <p class="text-muted fw-medium mb-0">Gujarat university, Gandhinagar</p>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="badge bg-white text-info border shadow-sm mb-2 px-3 py-2 rounded-pill">2009</span>
+                            <h4 class="h5 fw-bold mb-1 mt-2">Higher Secondary (Commerce)</h4>
+                            <p class="text-muted fw-medium mb-0">Gujarat secondary and higher secondary education board</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-5">
+            <h3 class="brand-font mb-4 text-gradient d-inline-block text-center w-100 fs-1">Projects & Work</h3>
+            <div class="projects-grid">
+                
+                <div class="project-card">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="h5 fw-bold mb-0">Ravel Trips</h4>
+                        <span class="badge bg-light text-dark border">Next.js / SCSS</span>
+                    </div>
+                    <p class="text-muted small flex-grow-1">Ravel simplifies trip planning by offering tailored trip suggestions created by others, personalized to your preferences. Easily create and share your travel adventures with friends on the fly.</p>
+                    <a href="https://apptest.ravelapp.co/" target="_blank" class="btn btn-sm btn-outline-primary mt-3 w-100 rounded-pill fw-medium">View Project <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                </div>
+
+                <div class="project-card">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="h5 fw-bold mb-0">New2</h4>
+                        <span class="badge bg-light text-dark border">Next.js / SCSS</span>
+                    </div>
+                    <p class="text-muted small flex-grow-1">The new2 App serves as a comprehensive tool for migrants relocating to a new country, offering support and resources to facilitate successful integration and bridge cultural gaps.</p>
+                    <a href="https://new2app.com/" target="_blank" class="btn btn-sm btn-outline-primary mt-3 w-100 rounded-pill fw-medium">View Project <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                </div>
+
+                <div class="project-card">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="h5 fw-bold mb-0">Lasher</h4>
+                        <span class="badge bg-light text-dark border">React.js / SCSS</span>
+                    </div>
+                    <p class="text-muted small flex-grow-1">The project focuses on "Hardware Tools". Developed using React.js, the application offers SCSS support for efficient styling and enhanced user interface design.</p>
+                    <a href="https://orders.lasher.co.za/" target="_blank" class="btn btn-sm btn-outline-primary mt-3 w-100 rounded-pill fw-medium">View Project <i class="fa-solid fa-arrow-right ms-1"></i></a>
+                </div>
+
+                <div class="project-card">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="h5 fw-bold mb-0">ES Live</h4>
+                        <span class="badge bg-light text-dark border">jQuery / Vuexy</span>
+                    </div>
+                    <p class="text-muted small flex-grow-1">"Study Details" project: Comprehensive management of student and teacher data, test schedules, and analysis graphs.</p>
+                    <button class="btn btn-sm btn-light border mt-3 w-100 rounded-pill fw-medium text-muted" disabled>Internal Link</button>
+                </div>
+
+                <div class="project-card">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="h5 fw-bold mb-0">Record Link</h4>
+                        <span class="badge bg-light text-dark border">React.js / SCSS</span>
+                    </div>
+                    <p class="text-muted small flex-grow-1">Project focuses on connecting dental practice management systems, doctor's profile management, and billing details.</p>
+                    <button class="btn btn-sm btn-light border mt-3 w-100 rounded-pill fw-medium text-muted" disabled>Internal Link</button>
+                </div>
+
+                <div class="project-card">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="h5 fw-bold mb-0">Dino</h4>
+                        <span class="badge bg-light text-dark border">Angular / SCSS</span>
+                    </div>
+                    <p class="text-muted small flex-grow-1">Post-trading application developed using Angular with SCSS support for efficient styling and enhanced user interface design.</p>
+                    <button class="btn btn-sm btn-light border mt-3 w-100 rounded-pill fw-medium text-muted" disabled>Internal Link</button>
+                </div>
+
+                <div class="project-card">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="h5 fw-bold mb-0">TRANSCOM SPATEL</h4>
+                        <span class="badge bg-light text-dark border">jQuery</span>
+                    </div>
+                    <p class="text-muted small flex-grow-1">Project entails a suite of analytical tools covering routes, events, traffic, and data comparison developed with a custom theme.</p>
+                    <button class="btn btn-sm btn-light border mt-3 w-100 rounded-pill fw-medium text-muted" disabled>Internal Link</button>
+                </div>
+
+                <div class="project-card">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="h5 fw-bold mb-0">Customer 360 App</h4>
+                        <span class="badge bg-light text-dark border">Ionic / SCSS</span>
+                    </div>
+                    <p class="text-muted small flex-grow-1">CRM application integrating marketing, sales, commerce, service, and customer interactions enhanced with SCSS styling.</p>
+                    <button class="btn btn-sm btn-light border mt-3 w-100 rounded-pill fw-medium text-muted" disabled>Internal Link</button>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="row mb-5">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <div class="glass-panel h-100">
+                    <h3 class="brand-font mb-4 text-gradient d-inline-block">Research & Learning</h3>
+                    <div class="mb-4">
+                        <h5 class="fw-bold mb-2">Blog app project</h5>
+                        <p class="text-muted small mb-2">Blog app project developed with latest React and Firebase. Features include reading articles by other authors, adding personal articles, and a rating and like feature.</p>
+                        <a href="https://blogprojectfirebase.netlify.app/" target="_blank" class="text-primary text-decoration-none small fw-bold">Visit App <i class="fa-solid fa-arrow-up-right-from-square ms-1"></i></a>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold mb-2">Codepen Code Blocks</h5>
+                        <p class="text-muted small mb-2">Project entails a suite of analytical tools covering routes, events, traffic, and data comparison. (Code experiments)</p>
+                        <a href="https://codepen.io/krunal5281" target="_blank" class="text-primary text-decoration-none small fw-bold">View Codepen <i class="fa-brands fa-codepen ms-1"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="glass-panel h-100 d-flex flex-column justify-content-center text-center">
+                    <h3 class="brand-font mb-4 text-gradient">Hobbies</h3>
+                    <div class="d-flex justify-content-center flex-wrap gap-4 mt-2">
+                        <div class="text-center">
+                            <div class="bg-white rounded-circle shadow-sm d-flex align-items-center justify-content-center mb-2 mx-auto" style="width: 70px; height: 70px;">
+                                <i class="fa-solid fa-film fs-3 text-primary"></i>
+                            </div>
+                            <span class="fw-medium small">Movies</span>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-white rounded-circle shadow-sm d-flex align-items-center justify-content-center mb-2 mx-auto" style="width: 70px; height: 70px;">
+                                <i class="fa-solid fa-utensils fs-3 text-danger"></i>
+                            </div>
+                            <span class="fw-medium small">Food</span>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-white rounded-circle shadow-sm d-flex align-items-center justify-content-center mb-2 mx-auto" style="width: 70px; height: 70px;">
+                                <i class="fa-solid fa-music fs-3 text-info"></i>
+                            </div>
+                            <span class="fw-medium small">Music</span>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-white rounded-circle shadow-sm d-flex align-items-center justify-content-center mb-2 mx-auto" style="width: 70px; height: 70px;">
+                                <i class="fa-solid fa-paper-plane fs-3 text-warning"></i>
+                            </div>
+                            <span class="fw-medium small">Origami</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-4 mt-4" style="background: rgba(255,255,255,0.5); backdrop-filter: blur(10px);">
+        <p class="mb-0 text-muted small fw-medium">&copy; 2026 Krunalsinh Vaghela. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
