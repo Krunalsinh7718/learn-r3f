@@ -13,6 +13,7 @@ function Navbar() {
       <Link to="/portal">Portal</Link>
       <Link to="/events">Events</Link>
       <Link to="/post-processing">Post Processing</Link>
+      <Link to="/portfolio">Portfolio</Link>
       
     </nav>
   );

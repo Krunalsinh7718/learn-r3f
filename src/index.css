@@ -157,3 +157,7 @@ body,
   padding: 2px 5px;
   border-radius: 5px;
 }
+.r3f
+{
+    touch-action: none;
+}

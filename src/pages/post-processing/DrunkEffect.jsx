@@ -6,7 +6,16 @@ const fragmentShader = /* glsl */`
     uniform float amplitude;
     uniform float time;
 
+    float circleShape(vec2 st, float radius, vec2 center){
+        float strenth = distance(center, st);
+        strenth = step(radius * 0.5, strenth);
+        return strenth;
+    }
 
+    float circleStripe(vec2 st, float multipler, vec2 center, float adjuct){
+        return fract( (distance(center, st ) - adjuct) * multipler) ;
+    }
+    
     void mainUv(inout vec2 uv)
     {
         uv.y += sin(uv.x * frequency + time) * amplitude;
@@ -20,23 +29,23 @@ const fragmentShader = /* glsl */`
     }
 `
 
-export default class DrunkEffect extends Effect{
-    constructor({ frequency, amplitude, blendFunction = BlendFunction.DARKEN  }){
+export default class DrunkEffect extends Effect {
+    constructor({ frequency, amplitude, blendFunction = BlendFunction.DARKEN }) {
         super(
             'DrunkEffect',
             fragmentShader,
-            {    
+            {
                 blendFunction: blendFunction,
-                uniforms : new Map([
+                uniforms: new Map([
                     ['frequency', new Uniform(frequency)],
                     ['amplitude', new Uniform(amplitude)],
-                    [ 'time', new Uniform(0) ]
+                    ['time', new Uniform(0)]
                 ])
             }
         )
     }
-    update(renderer, inputBuffer, deltaTime){
-        
+    update(renderer, inputBuffer, deltaTime) {
+
         this.uniforms.get('time').value += deltaTime;
     }
 }
