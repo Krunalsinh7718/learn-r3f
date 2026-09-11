@@ -96,7 +96,7 @@ export default function Laptop() {
             rotation={[0.13, 0.1, 0]}
             polar={[- 0.4, 0.2]}
             azimuth={[- 1, 0.75]}
-            speed={0.5}
+            // speed={0.5}
             damping={0.1}
             snap
             config={{ mass: 1, tension: 170, friction: 26 }}
@@ -141,16 +141,18 @@ export default function Laptop() {
                     rotation-y={- 1}
                     rotation-x={-0.25}
                     maxWidth={2}
+                    fillOpacity={frameOpacity}
+                    transitionDuration={'3s'}
                 >KRUNALSINH VAGHELA</Text>
             </Float>
         </PresentationControls>
         <ContactShadows
-            position-y={- 2}
-            opacity={0.4}
-            scale={3}
-            blur={10}
-            far={2}
-        // rotation-y={laptopRotationY}
+            position-y={-4}
+    opacity={0.4}
+    scale={10}
+    blur={4}
+    resolution={512}
+    color="#000000"
         />
 
     </>
