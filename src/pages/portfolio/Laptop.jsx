@@ -20,7 +20,7 @@ export default function Laptop() {
 
     const { laptopRotationY } = useControls("Laptop", {
         laptopRotationY: {
-            value: 0.67,
+            value: 0.22,
             min: -2,
             max: 2,
             step: 0.0001
@@ -96,18 +96,16 @@ export default function Laptop() {
             rotation={[0.13, 0.1, 0]}
             polar={[- 0.4, 0.2]}
             azimuth={[- 1, 0.75]}
-            // speed={0.5}
             damping={0.1}
             snap
-            config={{ mass: 1, tension: 170, friction: 26 }}
         >
             <Float rotationIntensity={0.4}>
                 <primitive
                     object={model.scene}
-                    scale={0.13}
+                    scale={0.08}
                     rotation-y={laptopRotationY}
-                    rotation-x={-0.1}
-                    position-y={-1.2}
+                    // rotation-x={-0.1}
+                    position-y={-0.5}
                 >
                     <Html
                         wrapperClass="html-frame"
@@ -136,10 +134,9 @@ export default function Laptop() {
                 />
                 <Text
                     font="/fonts/bangers-v20-latin-regular.woff"
-                    fontSize={1}
-                    position={[2, 1, 0]}
-                    rotation-y={- 1}
-                    rotation-x={-0.25}
+                    fontSize={0.8}
+                    position={[2, 0.6, 0.2]}
+                    rotation-y={- 1.25}
                     maxWidth={2}
                     fillOpacity={frameOpacity}
                     transitionDuration={'3s'}
@@ -147,13 +144,11 @@ export default function Laptop() {
             </Float>
         </PresentationControls>
         <ContactShadows
-            position-y={-4}
-    opacity={0.4}
-    scale={10}
-    blur={4}
-    resolution={512}
-    color="#000000"
-        />
+                    position-y={ - 1.4 }
+                    opacity={ 0.4 }
+                    scale={ 5 }
+                    blur={ 2.4 }
+                />
 
     </>
 }

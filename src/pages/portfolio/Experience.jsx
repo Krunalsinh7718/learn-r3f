@@ -1,5 +1,6 @@
 import { Environment, OrbitControls } from "@react-three/drei";
 import Laptop from "./Laptop";
+import Laptop1 from "./Laptop1";
 
 export default function Experience() {
     return <>

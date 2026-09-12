@@ -181,3 +181,9 @@ body,
   background: #000000;
 
 }
+
+.htmlScreen iframe
+{
+    width: 1024px;
+    height: 670px;
+}

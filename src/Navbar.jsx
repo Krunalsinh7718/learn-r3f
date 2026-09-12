@@ -14,6 +14,7 @@ function Navbar() {
       <Link to="/events">Events</Link>
       <Link to="/post-processing">Post Processing</Link>
       <Link to="/portfolio">Portfolio</Link>
+      <Link to="/physics">Physics</Link>
       
     </nav>
   );

@@ -8,8 +8,8 @@ export default function PortfolioMain() {
     camera={{
             fov: 45,
             near: 0.1,
-            far: 200,
-            position: [0, 4, 8]
+            far: 2000,
+        position: [ -3, 1.5, 4 ]
             
         }}>
         <Experience />

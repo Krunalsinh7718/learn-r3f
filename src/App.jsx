@@ -11,6 +11,7 @@ import PortalMain from "./pages/portal/PortalMain.jsx";
 import EventsMain from "./pages/events/EventsMain.jsx";
 import PostProcessingMain from "./pages/post-processing/PostProcessingMain.jsx";
 import PortfolioMain from "./pages/portfolio/PortfolioMain.jsx";
+import PhysicsMain from "./pages/physics/PhysicsMain.jsx";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route path="/events" element={<EventsMain />} />
         <Route path="/post-processing" element={<PostProcessingMain />} />
         <Route path="/portfolio" element={<PortfolioMain />} />
+        <Route path="/physics" element={<PhysicsMain />} />
         
       </Routes>
     </BrowserRouter>

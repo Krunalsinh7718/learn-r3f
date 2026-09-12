@@ -13,6 +13,7 @@
     "@react-three/drei": "10.0",
     "@react-three/fiber": "^9.7.0",
     "@react-three/postprocessing": "^3.1.1",
+    "@react-three/rapier": "^2.2.0",
     "leva": "^0.10.1",
     "postprocessing": "6.37",
     "r3f-perf": "7.2",
