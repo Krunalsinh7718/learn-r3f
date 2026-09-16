@@ -1,3 +1,8 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 :root {
   --text: #6b6375;
   --text-h: #08060d;
@@ -54,17 +59,7 @@ body {
   margin: 0;
 }
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
+
 
 h1,
 h2 {
@@ -130,26 +125,6 @@ button {
   align-items: center;
 }
 
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  background-color: #eeeeee18;
-  display: flex;
-  color: #000;
-  justify-content: center;
-  gap: 10px;
-  z-index: 1;
-
-  a {
-    color: #fff;
-    padding: 10px;
-    text-decoration: none;
-    cursor: pointer;
-  }
-}
 
 html,
 body,
@@ -186,4 +161,52 @@ body,
 {
     width: 1024px;
     height: 670px;
+}
+.navbar-container{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 1;
+  transition: 150ms;
+  &.menu-active{
+    left: 200px;
+  }
+}
+
+.navbar {
+  position: absolute;
+  top: 0;
+  right: 0px;
+  width: 200px;
+  height: 100%;
+  overflow: auto;
+  color: #000;
+  background-color: #666;
+  z-index: 1;
+  ul{
+    list-style-type: none;
+    padding: 0;
+  }
+
+  a {
+    display: inline-block;
+    width: 100%;
+    color: #fff;
+    padding: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 150ms;
+    &:hover{
+      background-color: #464646;
+    }
+  }
+}
+.nav-btn{
+  position: absolute;
+  left: 0px;
+  background-color: #666;
+  border-radius: 0px;
+  border: none;
+  padding: 15px;
 }
