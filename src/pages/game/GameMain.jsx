@@ -1,15 +1,16 @@
 import { Canvas } from "@react-three/fiber";
 import GameExperience from "./GameExperience";
 import { KeyboardControls } from "@react-three/drei";
+import Interface from "./Interface";
 
 export default function GameMain() {
     return <>
         <KeyboardControls map={[
-            {name : 'forward', keys: ['ArrowUp', 'KeyW']},
-            {name : 'backward', keys: ['ArrowDown', 'KeyS']},
-            {name : 'leftward', keys: ['ArrowLeft', 'KeyA']},
-            {name : 'rightward', keys: ['ArrowRight', 'KeyD']},
-            {name : 'jump', keys: ['Space']},
+            { name: 'forward', keys: ['ArrowUp', 'KeyW'] },
+            { name: 'backward', keys: ['ArrowDown', 'KeyS'] },
+            { name: 'leftward', keys: ['ArrowLeft', 'KeyA'] },
+            { name: 'rightward', keys: ['ArrowRight', 'KeyD'] },
+            { name: 'jump', keys: ['Space'] },
         ]}>
             <Canvas
                 shadows
@@ -22,6 +23,7 @@ export default function GameMain() {
             >
                 <GameExperience />
             </Canvas>
+            <Interface />
         </KeyboardControls>
     </>;
 }
