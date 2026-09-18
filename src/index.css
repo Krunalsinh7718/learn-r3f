@@ -239,8 +239,8 @@ body,
   color: #ffffff;
   font-size: 6vh;
   background: #00000033;
-  padding-top: 5px;
   text-align: center;
+  line-height: normal;
 }
 
 /**
@@ -256,9 +256,9 @@ body,
   color: #ffffff;
   font-size: 80px;
   background: #00000033;
-  padding-top: 10px;
   pointer-events: auto;
   cursor: pointer;
+  line-height: normal;
 }
 
 /**
