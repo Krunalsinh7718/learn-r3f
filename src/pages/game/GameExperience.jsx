@@ -6,7 +6,6 @@ import useGame from './stores/useGame.js';
 
 export default function GameExperience() {
     const blocksCount = useGame((state) => state.blocksCount)
-    console.log(blocksCount);
     
     return <>
         <Physics debug={false}>
