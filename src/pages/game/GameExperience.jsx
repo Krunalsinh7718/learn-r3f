@@ -6,12 +6,13 @@ import useGame from './stores/useGame.js';
 
 export default function GameExperience() {
     const blocksCount = useGame((state) => state.blocksCount)
-    console.log(blocksCount);
+    const blocksSeed = useGame((state) => state.blockSeed)
     
     return <>
+        <color args={['skyblue']} attach="background"/>
         <Physics debug={false}>
             <GameLights />
-            <GameLevel />
+            <GameLevel blocksCount={blocksCount} seed={blocksSeed}/>
             <Player />
         </Physics>
     </>;

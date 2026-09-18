@@ -3,14 +3,21 @@ import { useFrame } from "@react-three/fiber";
 import { RigidBody, useRapier } from "@react-three/rapier";
 import { useEffect, useRef, useState } from "react";
 import * as THREE from 'three';
+import useGame from './stores/useGame.js';
 
 export default function Player() {
 
     const body = useRef();
     const [subscribeKeys, getKeys] = useKeyboardControls();
     const { rapier, world } = useRapier();
-    const [smoothCameraPosition] = useState(() => new THREE.Vector3(10,10,10));
+    const [smoothCameraPosition] = useState(() => new THREE.Vector3(10, 10, 10));
     const [smoothCameraTarget] = useState(() => new THREE.Vector3());
+
+    const start = useGame((state) => state.start)
+    const end = useGame((state) => state.end)
+    const restart = useGame((state) => state.restart)
+    const blocksCount = useGame((state) => state.blocksCount)
+
 
     // console.log(world);
 
@@ -26,7 +33,26 @@ export default function Player() {
         }
     }
 
+    const reset = () => {
+
+        body.current.setTranslation({ x: 0, y: 0, z: 0 })
+        body.current.setLinvel({ x: 0, y: 0, z: 0 })
+        body.current.setAngvel({ x: 0, y: 0, z: 0 })
+
+    }
+
     useEffect(e => {
+
+        const unsubscribeReset = useGame.subscribe(
+            (state) => state.phase,
+            (value) => {
+                if (value === 'ready') {
+                    reset();
+                }
+
+            }
+        )
+
         const unsubscribe = subscribeKeys(
             (state) => state.jump,
             (value) => {
@@ -36,34 +62,44 @@ export default function Player() {
 
             })
 
-        return () => unsubscribe()
+        const unsubscribeAny = subscribeKeys(() => {
+            start();
+        })
+
+
+
+        return () => {
+            unsubscribe();
+            unsubscribeAny();
+            unsubscribeReset();
+        }
     }, [])
 
     useFrame((state, delta) => {
         const { backward, forward, leftward, rightward, jump } = getKeys();
         // console.log("backward 👇: "+ backward," forward 👆: "+ forward," leftward 👈: "+ leftward," rightward 👉: "+ rightward," jump ✊: "+ jump);
 
-        const impulseStrenth = 0.6 * delta;
-        const torqueStrenth = 0.2 * delta;
+        const impulseStrength = 0.6 * delta;
+        const torqueStrength = 0.2 * delta;
 
         const impulse = { x: 0, y: 0, z: 0 };
         const torque = { x: 0, y: 0, z: 0 };
 
         if (forward) {
-            impulse.z -= impulseStrenth;
-            torque.x -= torqueStrenth;
+            impulse.z -= impulseStrength;
+            torque.x -= torqueStrength;
         }
         if (rightward) {
-            impulse.x += impulseStrenth;
-            torque.z -= torqueStrenth;
+            impulse.x += impulseStrength;
+            torque.z -= torqueStrength;
         }
         if (backward) {
-            impulse.z += impulseStrenth;
-            torque.x += torqueStrenth;
+            impulse.z += impulseStrength;
+            torque.x += torqueStrength;
         }
         if (leftward) {
-            impulse.x -= impulseStrenth;
-            torque.z += torqueStrenth;
+            impulse.x -= impulseStrength;
+            torque.z += torqueStrength;
         }
 
         body.current.applyImpulse(impulse);
@@ -88,6 +124,20 @@ export default function Player() {
 
         state.camera.position.copy(smoothCameraPosition)
         state.camera.lookAt(smoothCameraTarget)
+
+        /**
+         * phases
+         */
+        // console.log(`body position z : ${Math.floor(bodyPosition.z)} , calculation : ${-(blocksCount * 4 + 2)}` );
+
+        if (bodyPosition.z < -(blocksCount * 4 + 2)) {
+            end();
+        }
+        // console.log(bodyPosition.y)
+        if (bodyPosition.y < -4) {
+            restart();
+            // reset()
+        }
     })
 
 

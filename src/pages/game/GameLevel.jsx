@@ -1,4 +1,4 @@
-import { useGLTF } from '@react-three/drei';
+import { Float, Text, useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { RigidBody, CuboidCollider } from '@react-three/rapier';
 import { useMemo, useRef, useState } from 'react';
@@ -13,6 +13,20 @@ const wallMaterial = new THREE.MeshStandardMaterial({ color: 'slategrey' });
 function BlockStart({ position = [0, 0, 0] }) {
     return <>
         <group position={position}>
+            <Float floatIntensity={0.25} rotationIntensity={0.25}>
+                <Text
+                    font="/fonts/bebas-neue-v9-latin-regular.woff"
+                    fontSize={0.4}
+                    lineHeight={0.75}
+                    position={[0.75, 0.65, 0]}
+                    rotation-y={- 0.25}
+                    maxWidth={1.5}
+                    textAlign='right'
+                >
+                    Marble Race
+                    <meshBasicMaterial toneMapped={false}/>
+                </Text>
+            </Float>
             <mesh
                 position={[0, -0.1, 0]}
                 scale={[4, 0.2, 4]}
@@ -31,6 +45,17 @@ function BlockEnd({ position = [0, 0, 0] }) {
     })
     return <>
         <group position={position}>
+            <Text
+                    font="/fonts/bebas-neue-v9-latin-regular.woff"
+                    fontSize={0.4}
+                    lineHeight={0.75}
+                    position={[0, 1.5, 2]}
+                    maxWidth={1.5}
+                    textAlign='right'
+                >
+                   FINISH
+                    <meshBasicMaterial toneMapped={false}/>
+                </Text>
             <mesh
                 position={[0, 0, 0]}
                 scale={[4, 0.2, 4]}
@@ -195,17 +220,28 @@ function Bounds({ length = 1 }) {
         </RigidBody>
     </>
 }
+function seededRandom(seed) {
+    const x = Math.sin(seed++) * 10000;
+    return x - Math.floor(x);
+}
 
-export default function GameLevel({ blocksCount = 5, blocksType = [BlockSpinner, BlockAxe, BlockLimbo] }) {
+export default function GameLevel({
+    blocksCount = 5,
+    blocksType = [BlockSpinner, BlockAxe, BlockLimbo],
+    seed = 0
+}) {
+
     const blocks = useMemo(() => {
+
         const blocks = [];
 
         for (let i = 0; i < blocksCount; i++) {
-            const type = blocksType[Math.floor(Math.random() * blocksType.length)];
+            const random = seededRandom(seed + i);
+            const type = blocksType[Math.floor(random * blocksType.length)];
             blocks.push(type);
         }
         return blocks;
-    }, [blocksCount, blocksType])
+    }, [blocksCount, blocksType, seed])
 
     return <>
         <BlockStart position={[0, 0, 0]} />
