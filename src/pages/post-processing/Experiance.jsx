@@ -133,7 +133,7 @@ export default function Experiance() {
 
 
     return <>
-        <color args={["#000"]} attach="background" />
+        <color args={["rgba(23, 116, 204, 0.65)"]} attach="background" />
         <OrbitControls />
         <directionalLight
             position={[1, 2, 3]}
@@ -167,25 +167,25 @@ export default function Experiance() {
              {/* <Vignette 
                 offset={ 0.3 }
                 darkness={ 0.9 }
-                blendFunction={ blandFunction }
-             />
-             <Glitch 
+                // blendFunction={ blandFunction }
+             /> */}
+             {/* <Glitch 
                 delay={ [ 0.5, 1 ] }
                 duration={ [ 0.1, 0.3 ] }
                 strength={ [ 0.2, 0.4 ] }
                 mode={ glitchMode }
-             />
-             <Noise blendFunction={noiseBlandFunction}/>
-             <Bloom 
+             /> */}
+             {/* <Noise blendFunction={noiseBlandFunction}/> */}
+             {/* <Bloom 
                 luminanceThreshold={ luminanceThreshold } 
                 mipmapBlur 
                 intensity={ bloomIntensity }
-            />
-            <DepthOfField 
+            /> */}
+            {/* <DepthOfField 
                 focusDistance={ focusDistance }
                 focalLength={ focalLength }
                 bokehScale={ bokehScale }
-            /> */}
+            />  */}
             <Drunk 
                 ref={ drunkRef }
                 {...drunkProps}

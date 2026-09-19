@@ -1,6 +1,7 @@
 import { Center, ContactShadows, Float, Html, PresentationControls, Text, useAnimations, useGLTF } from "@react-three/drei";
 import { useControls } from "leva";
 import { useEffect, useState } from "react";
+import * as THREE from 'three';
 
 export default function Laptop() {
 
@@ -72,13 +73,11 @@ export default function Laptop() {
 
     useEffect(() => {
         const action = animations.actions[animationName]
-
+        action.setLoop(THREE.LoopOnce)
         action.play();
-
 
         return () => {
             action.fadeOut(1)
-
         }
     }, [animationName])
 
@@ -86,7 +85,6 @@ export default function Laptop() {
         setTimeout(function () {
             setFrameOpacity(1)
         }, 1000)
-
     }, [])
 
 
@@ -120,7 +118,7 @@ export default function Laptop() {
                         }}
                     >
                         <iframe
-                            src="/html/vibrant_portfolio.html"
+                            src="/html/purple_blue_portfolio.html"
                         />
                     </Html>
                 </primitive>
@@ -128,7 +126,7 @@ export default function Laptop() {
                     width={2.5}
                     height={1.65}
                     intensity={40}
-                    color={'#0077ff'}
+                    color={'#a1a1ff'}
                     rotation={[- 0.1, Math.PI, 0]}
                     position={[0, 0.55, - 1.15]}
                 />
@@ -140,15 +138,18 @@ export default function Laptop() {
                     maxWidth={2}
                     fillOpacity={frameOpacity}
                     transitionDuration={'3s'}
-                >KRUNALSINH VAGHELA</Text>
+                    
+                >KRUNALSINH VAGHELA
+                <meshBasicMaterial toneMapped={false}/>
+                </Text>
             </Float>
         </PresentationControls>
         <ContactShadows
-                    position-y={ - 1.4 }
-                    opacity={ 0.4 }
-                    scale={ 5 }
-                    blur={ 2.4 }
-                />
+            position-y={- 1.4}
+            opacity={0.4}
+            scale={5}
+            blur={2.4}
+        />
 
     </>
 }

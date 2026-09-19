@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Krunalsinh Vaghela - Portfolio</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root {
+    --primary-color: #4361ee;
+    --secondary-color: #f72585;
+    --text-dark: #1a1a1a;
+    --text-muted: #555555;
+    --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text-dark);
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+.floating-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.float-icon {
+    position: absolute;
+    font-weight: 800;
+    color: rgba(67, 97, 238, 0.15);
+    animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(110vh) rotate(0deg) scale(0.8);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-20vh) rotate(360deg) scale(1.5);
+        opacity: 0;
+    }
+}
+
+.icon-1 { left: 10%; font-size: 6rem; animation-duration: 12s; animation-delay: 0s; }
+.icon-2 { left: 30%; font-size: 8rem; animation-duration: 18s; animation-delay: 2s; color: rgba(247, 37, 133, 0.12); }
+.icon-3 { left: 50%; font-size: 7rem; animation-duration: 15s; animation-delay: 4s; color: rgba(72, 149, 239, 0.18); }
+.icon-4 { left: 70%; font-size: 9rem; animation-duration: 20s; animation-delay: 1s; color: rgba(67, 97, 238, 0.1); }
+.icon-5 { left: 85%; font-size: 5rem; animation-duration: 14s; animation-delay: 5s; color: rgba(247, 37, 133, 0.15); }
+.icon-6 { left: 20%; font-size: 6.5rem; animation-duration: 16s; animation-delay: 7s; }
+.icon-7 { left: 60%; font-size: 7.5rem; animation-duration: 19s; animation-delay: 8s; color: rgba(72, 149, 239, 0.12); }
+.icon-8 { left: 80%; font-size: 8.5rem; animation-duration: 22s; animation-delay: 3s; }
+
+.navbar {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.navbar-brand {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--secondary-color) !important;
+}
+
+.contact-pill {
+    background: white;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    color: var(--primary-color);
+}
+
+.hero-section {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 6rem;
+}
+
+.availability-badge {
+    display: inline-block;
+    background: rgba(67, 97, 238, 0.1);
+    color: var(--primary-color);
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.6rem;
+    margin-bottom: 2.5rem;
+}
+
+.hero-title {
+    font-size: 5.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: #000;
+}
+
+.hero-subtitle {
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin-bottom: 2.5rem;
+}
+
+.hero-text {
+    font-size: 1.8rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    max-width: 95%;
+}
+
+.hero-visual-card {
+    background: white;
+    width: 450px;
+    height: 450px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 30px 60px rgba(67, 97, 238, 0.15);
+    transform: rotate(5deg);
+    transition: transform 0.3s ease;
+    margin: 0 auto;
+}
+
+.hero-visual-card:hover {
+    transform: rotate(0deg) scale(1.05);
+}
+
+.hero-visual-text {
+    font-size: 10rem;
+    font-weight: 800;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-title {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 4rem;
+    color: var(--text-dark);
+}
+
+.skill-badge {
+    font-size: 1.8rem;
+    padding: 1.2rem 2.5rem;
+    border-radius: 20px;
+    background: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.04);
+    margin: 0.8rem;
+    display: inline-block;
+    font-weight: 600;
+    color: var(--primary-color);
+    border: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.skill-badge:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-8px);
+}
+
+.project-card {
+    background: white;
+    border-radius: 35px;
+    padding: 4rem;
+    height: 100%;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-12px);
+}
+
+.project-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #000;
+    margin-bottom: 0.5rem;
+}
+
+.project-tech {
+    font-size: 1.6rem;
+    color: var(--secondary-color);
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.project-desc {
+    font-size: 1.6rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.experience-item {
+    background: white;
+    border-radius: 30px;
+    padding: 3.5rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+}
+
+.exp-year {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.exp-role {
+    font-size: 2.8rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+}
+
+.exp-company {
+    font-size: 1.8rem;
+    color: #777;
+    font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<div class="floating-bg">
+    <div class="float-icon icon-1">&lt;/&gt;</div>
+    <div class="float-icon icon-2">{ }</div>
+    <div class="float-icon icon-3">#</div>
+    <div class="float-icon icon-4">JS</div>
+    <div class="float-icon icon-5">CSS</div>
+    <div class="float-icon icon-6">UI</div>
+    <div class="float-icon icon-7">&lt;/&gt;</div>
+    <div class="float-icon icon-8">{ }</div>
+</div>
+
+<nav class="navbar">
+    <div class="container d-flex justify-content-between align-items-center">
+        <a class="navbar-brand" href="#">KV.</a>
+        <div class="contact-pill d-none d-lg-block">
+            +91 90335 69463 | Krunal5281@gmail.com
+        </div>
+    </div>
+</nav>
+
+<main class="container">
+    <section class="hero-section row align-items-center">
+        <div class="col-lg-7 order-2 order-lg-1 mt-5 mt-lg-0">
+            <div class="availability-badge">Available for Opportunities</div>
+            <h1 class="hero-title">Krunalsinh Vaghela</h1>
+            <h2 class="hero-subtitle">Front End Developer / Web Designer</h2>
+            <p class="hero-text">
+                As a passionate Front End Developer with 8 years of experience, I bring a strong proficiency in modern web technologies such as HTML5, CSS3, and JavaScript frameworks like React. My portfolio showcases my commitment to creating responsive and visually engaging user interfaces.
+            </p>
+        </div>
+        <div class="col-lg-5 order-1 order-lg-2 text-center">
+            <div class="hero-visual-card">
+                <div class="hero-visual-text">KV</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 my-5">
+        <h2 class="section-title text-center">Core Skills</h2>
+        <div class="text-center pb-4">
+            <span class="skill-badge">HTML / CSS / SCSS</span>
+            <span class="skill-badge">JavaScript</span>
+            <span class="skill-badge">React</span>
+            <span class="skill-badge">Next.js</span>
+            <span class="skill-badge">Angular.js</span>
+            <span class="skill-badge">Ionic</span>
+            <span class="skill-badge">Bootstrap / Tailwind</span>
+            <span class="skill-badge">THREE js</span>
+            <span class="skill-badge">RTF</span>
+            <span class="skill-badge">Blender</span>
+        </div>
+    </section>
+
+    <section class="py-5 my-5">
+        <h2 class="section-title">Experience</h2>
+        <div class="row g-5">
+            <div class="col-xl-6">
+                <div class="experience-item h-100">
+                    <div class="exp-year">2022 - Present</div>
+                    <div class="exp-role">Front End Developer</div>
+                    <div class="exp-company">Dev Information Technology Ltd</div>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="experience-item h-100">
+                    <div class="exp-year">2020 - 2022</div>
+                    <div class="exp-role">Front End Developer</div>
+                    <div class="exp-company">Zignuts Technolab Pvt Ltd</div>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="experience-item h-100">
+                    <div class="exp-year">2018 - 2020</div>
+                    <div class="exp-role">Web Designer</div>
+                    <div class="exp-company">ADSOM GLOBALTECH Pvt Ltd</div>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="experience-item h-100">
+                    <div class="exp-year">2016 - 2018</div>
+                    <div class="exp-role">Web Designer</div>
+                    <div class="exp-company">INCORE TECHNOLOGIES LLP</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 mt-5 mb-6">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="row g-5">
+            <div class="col-xl-6">
+                <div class="project-card">
+                    <h3 class="project-title">Ravel</h3>
+                    <div class="project-tech">Next.js / SCSS</div>
+                    <p class="project-desc">Ravel simplifies trip planning by offering tailored trip suggestions personalized to your preferences. Easily create and share your travel adventures with friends on the fly.</p>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="project-card">
+                    <h3 class="project-title">Lasher</h3>
+                    <div class="project-tech">React.js / SCSS</div>
+                    <p class="project-desc">A comprehensive application focusing on Hardware Tools, developed using React.js with SCSS for efficient styling and enhanced user interface design.</p>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="project-card">
+                    <h3 class="project-title">Customer 360 App</h3>
+                    <div class="project-tech">Ionic / SCSS</div>
+                    <p class="project-desc">CRM application integrating marketing, sales, commerce, service, and customer interactions enhanced with advanced SCSS styling capabilities.</p>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="project-card">
+                    <h3 class="project-title">Dino Group</h3>
+                    <div class="project-tech">Angular / SCSS</div>
+                    <p class="project-desc">A robust post-trading application offering efficient styling and a highly enhanced user interface design for handling complex datasets securely.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
