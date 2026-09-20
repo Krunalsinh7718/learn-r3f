@@ -138,6 +138,7 @@ export default function Laptop() {
                     maxWidth={2}
                     fillOpacity={frameOpacity}
                     transitionDuration={'3s'}
+                    color={new THREE.Color(1.915,1.915,1.915)}
                     
                 >KRUNALSINH VAGHELA
                 <meshBasicMaterial toneMapped={false}/>

@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { Uniform } from "three";
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { shaderMaterial } from "@react-three/drei"
 import { useControls } from "leva"
 import gridVertexShader from "./grid-shaders/vertex.vert"
@@ -42,7 +42,7 @@ const DotGridMaterial = shaderMaterial(
 
 
 extend({ GridMaterial });
-extend({DotGridMaterial})
+extend({ DotGridMaterial })
 
 export default function BgElements() {
     const gridMaterialRef = useRef();
@@ -113,20 +113,36 @@ export default function BgElements() {
         },
     })
 
+    const uniforms = useMemo(() => ({
+        uTime: { value: 0.0 },
+        uColorStart:  {value:new THREE.Color("red")},
+        uColorEnd: {value: new THREE.Color("blue")},
+    }), [])
+
+
+
     return <>
         <mesh
             rotation={[rotateX, rotateY, rotateZ]}
             position={[positionX, positionY, positionZ]}
             scale={scale}>
             <planeGeometry args={[10, 10]} />
-            <gridMaterial 
+            {/* <gridMaterial 
                 ref={gridMaterialRef} 
                 toneMapped={false}
                 depthWrite={false}
                 attach="material"
+            /> */}
+            <shaderMaterial
+                ref={gridMaterialRef}
+                vertexShader={gridVertexShader}
+                fragmentShader={gridFragmentShader}
+                uniforms={uniforms}
+                transparent={true}
+                toneMapped={false}
             />
         </mesh>
 
-       
+
     </>
 }

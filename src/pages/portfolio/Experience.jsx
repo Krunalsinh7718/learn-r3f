@@ -20,6 +20,7 @@ import {
     DepthOfField
 } from "@react-three/postprocessing";
 import TestEffect from "./TestEffect";
+import Logos from "./Logos";
 
 
 export default function Experience() {
@@ -52,10 +53,11 @@ export default function Experience() {
                 '/images/environments/2/pz.jpg',
                 '/images/environments/2/nz.jpg',
             ]} />
-            {/* <Laptop />
-            <BgElements /> */}
-
-            <TestEffect />
+            <Laptop />
+            <BgElements />
+            <Logos />
+            {/* <TestEffect /> */}
+         
        
         
     </>;

@@ -26,7 +26,7 @@ const fragmentShader = /*glsl*/ `
     uv.x += uTime * 0.1;
     vec2 pattern = uv * 30.0 ;
     pattern = fract(pattern) ;
-    float frame = 0.02;
+    float frame = 0.1;
 	float calcX = step(frame,pattern.x);
     float calcY = step(frame,pattern.y);
 	
@@ -101,11 +101,11 @@ export default function TestEffect(){
         disableNormalPass={true} saves performance if you don't use SSAO/SSAA
       */}
       <EffectComposer disableNormalPass>
-        <Bloom 
+        {/* <Bloom 
           luminanceThreshold={1.0} 
           mipmapBlur 
           intensity={1.5} 
-        />
+        /> */}
         <Vignette offset={0.1} darkness={1.1} />
       </EffectComposer>
     </>
