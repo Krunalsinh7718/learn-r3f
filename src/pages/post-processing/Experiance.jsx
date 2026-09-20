@@ -32,7 +32,7 @@ export default function Experiance() {
 
     const {blandFunction} = useControls("Bland Function",{
         blandFunction : {
-            value : BlendFunction.COLOR_BURN,
+            value : BlendFunction.SET,
             options : BlendFunction
         }
     })
@@ -111,10 +111,6 @@ export default function Experiance() {
 
     const drunkRef = useRef();
 
-    useEffect(() => {
-        console.log(drunkRef.current);
-    },[])
-
     const drunkProps = useControls("Drunk Effect",{
         frequency : {
             value : 16.4,
@@ -192,7 +188,7 @@ export default function Experiance() {
                 blendFunction={ blandFunction }
               
             />
-            <ToneMapping mode={toneMapingMode}/>
+            {/* <ToneMapping mode={toneMapingMode}/> */}
         </EffectComposer>
     </>
 }

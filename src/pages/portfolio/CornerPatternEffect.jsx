@@ -128,10 +128,10 @@ float circleShape2(vec2 st, float radius, vec2 center)
 
 `
 
-export default class DrunkEffect extends Effect {
+export default class CornerPatternEffect extends Effect {
     constructor({ frequency, amplitude, blendFunction = BlendFunction.DARKEN }) {
         super(
-            'DrunkEffect',
+            'CornerPatternEffect',
             fragmentShader,
             {
                 blendFunction: blendFunction,

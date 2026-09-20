@@ -148,7 +148,10 @@ export default function Laptop() {
             position-y={- 1.4}
             opacity={0.4}
             scale={5}
-            blur={2.4}
+            blur={5}
+            depthWrite={false}
+            renderOrder={1}
+            frames={1}
         />
 
     </>
