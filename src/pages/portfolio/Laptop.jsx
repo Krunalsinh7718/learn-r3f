@@ -2,6 +2,7 @@ import { Center, ContactShadows, Float, Html, PresentationControls, Text, useAni
 import { useControls } from "leva";
 import { useEffect, useState } from "react";
 import * as THREE from 'three';
+import gsap from 'gsap';
 
 export default function Laptop() {
 
@@ -83,7 +84,17 @@ export default function Laptop() {
 
     useEffect(() => {
         setTimeout(function () {
-            setFrameOpacity(1)
+            
+            gsap.to(
+                { value: 0 },
+                {
+                    value: 1,
+                    duration: 0.5,
+                    onUpdate(e) {
+                        setFrameOpacity(this.targets()[0].value)
+                    }
+                }
+            );
         }, 1000)
     }, [])
 
@@ -138,10 +149,10 @@ export default function Laptop() {
                     maxWidth={2}
                     fillOpacity={frameOpacity}
                     transitionDuration={'3s'}
-                    color={new THREE.Color(1.915,1.915,1.915)}
-                    
+                    color={new THREE.Color(1.915, 1.915, 1.915)}
+
                 >KRUNALSINH VAGHELA
-                <meshBasicMaterial toneMapped={false}/>
+                    <meshBasicMaterial toneMapped={false} />
                 </Text>
             </Float>
         </PresentationControls>
