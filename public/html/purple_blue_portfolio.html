@@ -336,6 +336,44 @@
             color: var(--accent-pink);
             font-weight: 600;
         }
+
+        
+/* ==========================================================================
+   1. Modern Standard Method (Firefox, Chrome 121+, Safari 18.2+)
+   ========================================================================== */
+html {
+  /* Syntax: scrollbar-color: [Thumb Color] [Track Color]; */
+  scrollbar-color: #2f00af #deacff; 
+  
+  /* Options: auto | thin | none */
+  scrollbar-width: thin; 
+}
+
+/* ==========================================================================
+   2. WebKit Method (Legacy Chrome, Safari, Edge)
+   ========================================================================== */
+/* The overall scrollbar container (sets width/height) */
+::-webkit-scrollbar {
+  width: 10px;        /* Width of vertical scrollbar */
+  height: 10px;       /* Height of horizontal scrollbar */
+}
+
+/* The background track */
+::-webkit-scrollbar-track {
+  background: #deacff; 
+  border-radius: 4px;
+}
+ 
+/* The draggable scroll handle */
+::-webkit-scrollbar-thumb {
+  background: #2f00af; 
+  border-radius: 4px;
+}
+
+/* Hover effect on the handle */
+::-webkit-scrollbar-thumb:hover {
+  background: #3303b8; 
+}
     </style>
 </head>
 

@@ -7,18 +7,9 @@ import gsap from 'gsap';
 export default function Laptop() {
 
     const [frameOpacity, setFrameOpacity] = useState(0);
-    // console.log(setFrameOpacity);
-
 
     const model = useGLTF("/models/laptop/laptop.glb");
     const animations = useAnimations(model.animations, model.scene);
-
-    const { animationName } = useControls("Animation", {
-        animationName: {
-            options: animations.names
-        },
-
-    })
 
     const { laptopRotationY } = useControls("Laptop", {
         laptopRotationY: {
@@ -73,14 +64,14 @@ export default function Laptop() {
     })
 
     useEffect(() => {
-        const action = animations.actions[animationName]
+        const action = animations.actions[animations.names[0]]
         action.setLoop(THREE.LoopOnce)
         action.play();
 
         return () => {
             action.fadeOut(1)
         }
-    }, [animationName])
+    }, [animations])
 
     useEffect(() => {
         setTimeout(function () {
@@ -163,7 +154,7 @@ export default function Laptop() {
             blur={5}
             depthWrite={false}
             renderOrder={1}
-            frames={1}
+            // frames={1}
         />
 
     </>

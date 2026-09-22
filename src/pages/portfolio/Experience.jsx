@@ -30,15 +30,7 @@ export default function Experience() {
         }
     })
 
-    const patternRef = useRef();
-
-     const {blandFunction} = useControls("Bland Function",{
-        blandFunction : {
-            value : BlendFunction.SET,
-            options : BlendFunction
-        }
-    })
-
+ 
 
     return <>
         

@@ -47,7 +47,7 @@ extend({ DotGridMaterial })
 export default function BgElements() {
     const gridMaterialRef = useRef();
     const dotGridMaterialRef = useRef();
-    const { positionX, positionY, positionZ, rotateX, rotateY, rotateZ, scale } = useControls("Bottom Grid", {
+    const { positionX, positionY, positionZ, rotateX, rotateY, rotateZ, scale, gridColorStart, gridColorEnd } = useControls("Bottom Grid", {
         positionX: {
             value: 3,
             min: -3,
@@ -85,21 +85,12 @@ export default function BgElements() {
             step: 0.01
         },
         scale: {
-            value: 1.69,
+            value: 2.04,
             min: 1,
             max: 3,
             step: 0.01
         },
-    })
-
-    useFrame((state, delta) => {
-        gridMaterialRef.current.uniforms.uTime.value += delta;
-        // dotGridMaterialRef.current.lookAt(state.camera.position)
-
-    })
-
-    const { gridColorStart, gridColorEnd } = useControls('grid', {
-        gridColorStart: {
+         gridColorStart: {
             value: "#2975c9",
             onChange: (value) => {
                 gridMaterialRef.current.uniforms.uColorStart.value.set(value)
@@ -113,10 +104,18 @@ export default function BgElements() {
         },
     })
 
+    useFrame((state, delta) => {
+        gridMaterialRef.current.uniforms.uTime.value += delta;
+        // dotGridMaterialRef.current.lookAt(state.camera.position)
+
+    })
+
+    
+
     const uniforms = useMemo(() => ({
         uTime: { value: 0.0 },
-        uColorStart:  {value:new THREE.Color("red")},
-        uColorEnd: {value: new THREE.Color("blue")},
+        uColorStart:  {value:new THREE.Color(gridColorStart)},
+        uColorEnd: {value: new THREE.Color(gridColorEnd)},
     }), [])
 
 
