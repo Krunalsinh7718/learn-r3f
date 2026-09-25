@@ -147,7 +147,7 @@ export default function Laptop() {
                 </Text>
             </Float>
         </PresentationControls>
-        <ContactShadows
+        {/* <ContactShadows
             position-y={- 1.4}
             opacity={0.4}
             scale={5}
@@ -155,7 +155,7 @@ export default function Laptop() {
             depthWrite={false}
             renderOrder={1}
             // frames={1}
-        />
+        /> */}
 
     </>
 }

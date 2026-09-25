@@ -1,52 +1,60 @@
 varying vec2 vUv;
+
 uniform float uTime;
 
 uniform vec3 uColorStart;
 uniform vec3 uColorEnd;
 
-#include "../../../shaders-includes/perlinnoise3d.glsl"
-
-float grid(vec2 st){
-         vec2 pattern = st * 8.0;
-     pattern = fract(pattern) ;
-     float frame = 0.1;
- 	float calcX = step(frame,pattern.x);
-     float calcY = step(frame,pattern.y);
-	
-     float calcX1 = step(frame, 1.0 - pattern.x);
- 	float calcY2 = step(frame, 1.0 - pattern.y);
-	
- 	return calcX * calcX1 * calcY * calcY2;
-    
-}
-
 void main()
-{   
-    vec2 uv = vUv;    
-    vec2 uv1 = vUv;    
-    vec3 color = vec3(0.0);
+{
+    vec2 uv = vUv;
+
+    // Animate grid
     uv.x += uTime * 0.01;
-    vec2 pattern = uv * 30.0 ;
-    pattern = fract(pattern) ;
+
+    // Create grid cells
+    vec2 pattern = fract(uv * 30.0 );
+
     float frame = 0.02;
-	float calcX = step(frame,pattern.x);
-    float calcY = step(frame,pattern.y);
-	
-    float calcX1 = step(frame, 1.0 - pattern.x);
-	float calcY2 = step(frame, 1.0 - pattern.y);
 
-     float strength = 1.0 - (calcX * calcX1 * calcY * calcY2);
+    float x1 = step(frame, pattern.x);
+    float y1 = step(frame, pattern.y);
 
-     //outer glow
-   float dist =  smoothstep(0.01, 0.8, distance(uv1, vec2(0.5))  * 2.1);
-   strength -= dist;
+    float x2 = step(frame, 1.0 - pattern.x);
+    float y2 = step(frame, 1.0 - pattern.y);
 
-   color = mix(uColorStart, uColorEnd, strength);
+    float grid = 1.0 - (x1 * x2 * y1 * y2);
 
+    // --------------------------------
+    // Outer fade
+    // --------------------------------
 
-	
-	
+    float distanceFromCenter =
+        distance(vUv, vec2(0.5)) * 2.1;
 
-    gl_FragColor = vec4(color, strength);
-     #include <colorspace_fragment>
+    float fade = smoothstep(
+        0.01,
+        0.8,
+        distanceFromCenter
+    );
+
+    // Reduce grid visibility toward the outside
+    float alpha = grid * (1.0 - fade);
+
+    // Make absolutely sure alpha is valid
+    alpha = clamp(alpha, 0.0, 1.0);
+
+    // --------------------------------
+    // Color
+    // --------------------------------
+
+    vec3 color = mix(
+        uColorStart,
+        uColorEnd,
+        grid
+    );
+
+    gl_FragColor = vec4(color, alpha);
+
+    #include <colorspace_fragment>
 }

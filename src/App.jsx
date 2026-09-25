@@ -13,6 +13,7 @@ import PostProcessingMain from "./pages/post-processing/PostProcessingMain.jsx";
 import PortfolioMain from "./pages/portfolio/PortfolioMain.jsx";
 import PhysicsMain from "./pages/physics/PhysicsMain.jsx";
 import GameMain from "./pages/game/GameMain.jsx";
+import LoadersMain from "./pages/loaders/LoadersMain.jsx";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
         <Route path="/portfolio" element={<PortfolioMain />} />
         <Route path="/physics" element={<PhysicsMain />} />
         <Route path="/game" element={<GameMain />} />
+        <Route path="/loaders" element={<LoadersMain />} />
         
       </Routes>
     </BrowserRouter>
