@@ -1,7 +1,7 @@
 import { Canvas, useThree } from "@react-three/fiber";
 import CameraExperience from "./CameraExperience";
 import { OrbitControls } from "@react-three/drei";
-import { useControls } from "leva";
+import { Leva, useControls } from "leva";
 import { useEffect } from "react";
 
 function CameraController({far, fov, near, positionX, positionY, positionZ, rotationX, rotationY, rotationZ}){
