@@ -2,7 +2,12 @@ import * as THREE from "three";
 import { Text, Html } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useControls } from "leva";
-import { useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { useSlider } from "./GeomatriesProjMain";
+import GeomatriesProGeoMesh from "./GeomatriesProGeoMesh";
+
+
+
 
 const geometryList = [
     {
@@ -64,121 +69,16 @@ const geometryList = [
     },
 ];
 
-const GeoPosition = ({ x, z }) => (
-    <Text
-        font="/fonts/bangers-v20-latin-regular.woff"
-        fontSize={0.2}
-        position={[0, 2, 0]}
-        color="#fff"
-    >
-        {`${x.toFixed(2)}, 0, ${z.toFixed(2)}`}
-    </Text>
-);
-
-function GeometryMesh({
-    geometry,
-    position,
-    active,
-}) {
-    const meshRef = useRef();
-
-    useFrame((_, delta) => {
-        if (!meshRef.current) return;
-
-        meshRef.current.rotation.x += delta * 0.5;
-        meshRef.current.rotation.y += delta * 0.8;
-    });
-
-    return (
-        <mesh
-            ref={meshRef}
-            position={position}
-            scale={active ? 0.7 : 0.5}
-            castShadow
-        >
-            {geometry.type === "box" && (
-                <boxGeometry
-                    args={[
-                        geometry.defaults.width,
-                        geometry.defaults.height,
-                        geometry.defaults.depth,
-                    ]}
-                />
-            )}
-
-            {geometry.type === "capsule" && (
-                <capsuleGeometry
-                    args={[
-                        geometry.defaults.radius,
-                        geometry.defaults.length,
-                        geometry.defaults.capSegments,
-                        geometry.defaults.radialSegments,
-                    ]}
-                />
-            )}
-
-            {geometry.type === "torus" && (
-                <torusGeometry
-                    args={[
-                        geometry.defaults.radius,
-                        geometry.defaults.tube,
-                        geometry.defaults.radialSegments,
-                        geometry.defaults.tubularSegments,
-                    ]}
-                />
-            )}
-
-            {geometry.type === "cone" && (
-                <coneGeometry
-                    args={[
-                        geometry.defaults.radius,
-                        geometry.defaults.height,
-                        geometry.defaults.radialSegments,
-                    ]}
-                />
-            )}
-
-            {geometry.type === "cylinder" && (
-                <cylinderGeometry
-                    args={[
-                        geometry.defaults.radiusTop,
-                        geometry.defaults.radiusBottom,
-                        geometry.defaults.height,
-                        geometry.defaults.radialSegments,
-                    ]}
-                />
-            )}
-
-            {geometry.type === "sphere" && (
-                <sphereGeometry
-                    args={[
-                        geometry.defaults.radius,
-                        geometry.defaults.widthSegments,
-                        geometry.defaults.heightSegments,
-                    ]}
-                />
-            )}
-
-            <meshStandardMaterial
-                color={geometry.color}
-            />
-
-            {/* <Text
-                font="/fonts/bangers-v20-latin-regular.woff"
-                fontSize={0.2}
-                position={[0, 2, 0]}
-                color="#fff"
-            >
-                {`${position[0].toFixed(2)}, 0, ${position[2].toFixed(2)}`}
-            </Text> */}
-        </mesh>
-    );
-}
 
 export default function GeomatriesProjGeoGroup() {
+
+    const { nextSliderOuter, prevSliderOuter } = useSlider();
+
     const [activeIndex, setActiveIndex] = useState(0);
+    const activeType = geometryList[activeIndex].type;
 
     const groupRef = useRef();
+    const activeIndexRef = useRef(0);
     const targetRotation = useRef(0);
 
     const radius = 4;
@@ -196,59 +96,134 @@ export default function GeomatriesProjGeoGroup() {
     });
 
     const next = () => {
-        setActiveIndex((current) => {
-            const nextIndex = (current + 1) % count;
+        const nextIndex =
+            (activeIndexRef.current + 1) % count;
+        activeIndexRef.current = nextIndex;
 
-            targetRotation.current =
-                -(nextIndex * Math.PI * 2) / count;
+        targetRotation.current =
+            -(nextIndex * Math.PI * 2) / count;
+        setActiveIndex(nextIndex);
 
-            return nextIndex;
-        });
     };
 
     const previous = () => {
-        setActiveIndex((current) => {
-            const previousIndex =
-                (current - 1 + count) % count;
+        const previousIndex =
+            (activeIndexRef.current - 1 + count) % count;
 
-            targetRotation.current =
-                -(previousIndex * Math.PI * 2) / count;
+        activeIndexRef.current = previousIndex;
 
-            return previousIndex;
-        });
+        targetRotation.current =
+            -(previousIndex * Math.PI * 2) / count;
+
+        setActiveIndex(previousIndex);
     };
+
+    useEffect(() => {
+        prevSliderOuter(previous);
+        nextSliderOuter(next);
+    }, []);
+
+
+    const boxControls = useControls("Box", {
+        width: {
+            value: 1,
+            min: 0.1,
+            max: 5,
+            step: 0.1,
+            render: () => activeType === "box",
+        },
+
+        height: {
+            value: 1,
+            min: 0.1,
+            max: 5,
+            step: 0.1,
+            render: () => activeType === "box",
+        },
+
+        depth: {
+            value: 1,
+            min: 0.1,
+            max: 5,
+            step: 0.1,
+            render: () => activeType === "box",
+        },
+    }, [activeType]);
+    const capsuleControls = useControls("Capsule", {
+        radius: {
+            value: 0.5,
+            min: 0.1,
+            max: 3,
+            step: 0.1,
+            render: () => activeType === "capsule",
+        },
+
+        length: {
+            value: 1,
+            min: 0.1,
+            max: 5,
+            step: 0.1,
+            render: () => activeType === "capsule",
+        },
+
+        capSegments: {
+            value: 4,
+            min: 1,
+            max: 32,
+            step: 1,
+            render: () => activeType === "capsule",
+        },
+
+        radialSegments: {
+            value: 8,
+            min: 3,
+            max: 64,
+            step: 1,
+            render: () => activeType === "capsule",
+        },
+    }, [activeType]);
+
+    const controlsByType = {
+        box: boxControls,
+        capsule: capsuleControls,
+    };
+
+
 
     return (
         <>
             <group ref={groupRef}>
                 {geometryList.map((geometry, index) => {
                     const angle =
-                        Math.PI / 2 +
+                        Math.PI / 2 -
                         (index / count) * Math.PI * 2;
 
                     const x = Math.cos(angle) * radius;
                     const z = Math.sin(angle) * radius;
 
                     return (
-                        <GeometryMesh
+                        <GeomatriesProGeoMesh
                             key={geometry.type}
                             geometry={geometry}
                             position={[x, 0, z]}
                             active={index === activeIndex}
+                            controls={controlsByType[geometry.type]}
                         />
+
                     );
                 })}
             </group>
+            {/* <Text
+                fontSize={3}
+                position={[0, 2, 0]}
+            >{activeIndex}</Text> */}
 
-            <Html position={[0, 3, 4]}>
-                <button onClick={previous}>
-                    Previous
-                </button>
+            <Text
+                fontSize={1}
+                position={[0, 2, 0]}
+                color={"red"}
+            >{geometryList[activeIndex].type}</Text>
 
-                <button onClick={next}>
-                    Next
-                </button>
-            </Html>
         </>
     );
 }
