@@ -27,7 +27,7 @@ export default function GeomatriesProjMain() {
 
 
     return <>
-        <Leva  />
+        <Leva />
         <SliderContext.Provider
             value={{
                 nextSliderOuter,
@@ -50,14 +50,20 @@ export default function GeomatriesProjMain() {
             </Canvas>
         </SliderContext.Provider>
         <button className="app-circular-slider-nav app-circular-slider-nav-left" onClick={prevSlide} >
-            &lt;
+            <svg width="134" height="134" viewBox="0 0 134 134" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M90.5 19L43 66.5L90.5 114" stroke="white" />
+            </svg>
         </button>
         <button className="app-circular-slider-nav app-circular-slider-nav-right" onClick={nextSlide}>
-            &gt;
+            <svg width="134" height="134" viewBox="0 0 134 134" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M43 114L90.5 66.5L43 19" stroke="white" />
+            </svg>
         </button>
+
+
     </>
 }
 
 export const useSlider = () => {
-    return useContext(SliderContext );
+    return useContext(SliderContext);
 }

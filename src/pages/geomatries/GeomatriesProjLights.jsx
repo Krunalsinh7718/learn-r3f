@@ -1,16 +1,20 @@
 import { useHelper } from "@react-three/drei";
 import { useCreateStore, useControls, LevaPanel, folder } from 'leva'
 import { useEffect, useRef } from "react"
-import { SpotLightHelper } from 'three'
+import { SpotLightHelper  } from 'three'
+import { RectAreaLightHelper } from "three/examples/jsm/Addons.js";
+
 
 export default function GeomatriesProjLights() {
     const spotLightRef = useRef(null);
     // useHelper(spotLightRef, SpotLightHelper, 'cyan');
+    const rectLightRef = useRef(null);
+    // useHelper(rectLightRef, RectAreaLightHelper, 'cyan');
     const { angle, positionX, positionY, positionZ, targetX, targetY, targetZ } = useControls({
         spotLight: folder({
 
             angle: {
-                value: 0.12,
+                value: 0.13,
                 min: -3.14,
                 max: 3.14,
                 step: 0.0001
@@ -78,5 +82,16 @@ export default function GeomatriesProjLights() {
             anglePower={5}
         />
         <ambientLight intensity={0.5} />
+
+        <rectAreaLight 
+        ref={rectLightRef} 
+        rotation-x={Math.PI * 0.5} 
+        
+        position={[0,-0.99,4]}
+        width={2.5}
+        height={2.5}
+        
+        />
+        
     </>
 }

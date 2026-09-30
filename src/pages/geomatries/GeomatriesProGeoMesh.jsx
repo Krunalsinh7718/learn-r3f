@@ -1,3 +1,4 @@
+import { DoubleSide, FrontSide  } from "three";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 
@@ -48,10 +49,11 @@ export default function GeomatriesProGeoMesh({
             {geometry.type === "torus" && (
                 <torusGeometry
                     args={[
-                        geometry.defaults.radius,
-                        geometry.defaults.tube,
-                        geometry.defaults.radialSegments,
-                        geometry.defaults.tubularSegments,
+                        controls?.radius ?? geometry.defaults.radius,
+                        controls?.tube ?? geometry.defaults.tube,
+                        controls?.radialSegments ?? geometry.defaults.radialSegments,
+                        controls?.tubularSegments ?? geometry.defaults.tubularSegments,
+                        controls?.arc ?? geometry.defaults.arc,
                     ]}
                 />
             )}
@@ -59,9 +61,11 @@ export default function GeomatriesProGeoMesh({
             {geometry.type === "cone" && (
                 <coneGeometry
                     args={[
-                        geometry.defaults.radius,
-                        geometry.defaults.height,
-                        geometry.defaults.radialSegments,
+                        controls?.radius ?? geometry.defaults.radius,
+                        controls?.height ?? geometry.defaults.height,
+                        controls?.radialSegments ?? geometry.defaults.radialSegments,
+                        controls?.heightSegments ?? geometry.defaults.heightSegments,
+                        controls?.openEnded ?? geometry.defaults.openEnded,
                     ]}
                 />
             )}
@@ -69,10 +73,12 @@ export default function GeomatriesProGeoMesh({
             {geometry.type === "cylinder" && (
                 <cylinderGeometry
                     args={[
-                        geometry.defaults.radiusTop,
-                        geometry.defaults.radiusBottom,
-                        geometry.defaults.height,
-                        geometry.defaults.radialSegments,
+                        controls?.radiusTop ?? geometry.defaults.radiusTop,
+                        controls?.radiusBottom ?? geometry.defaults.radiusBottom,
+                        controls?.height ?? geometry.defaults.height,
+                        controls?.radialSegments ?? geometry.defaults.radialSegments,
+                        controls?.heightSegments ?? geometry.defaults.heightSegments,
+                        controls?.openEnded ?? geometry.defaults.openEnded,
                     ]}
                 />
             )}
@@ -80,15 +86,65 @@ export default function GeomatriesProGeoMesh({
             {geometry.type === "sphere" && (
                 <sphereGeometry
                     args={[
-                        geometry.defaults.radius,
-                        geometry.defaults.widthSegments,
-                        geometry.defaults.heightSegments,
+                        controls?.radius ?? geometry.defaults.radius,
+                        controls?.widthSegments ?? geometry.defaults.widthSegments,
+                        controls?.heightSegments ?? geometry.defaults.heightSegments,
+                        controls?.phiStart ?? geometry.defaults.phiStart,
+                        controls?.phiLength ?? geometry.defaults.phiLength,
+                        controls?.thetaStart ?? geometry.defaults.thetaStart,
+                        controls?.thetaLength ?? geometry.defaults.thetaLength,
+                    ]}
+                />
+            )}
+
+            {geometry.type === "circle" && (
+                <circleGeometry
+                    args={[
+                        controls?.radius ?? geometry.defaults.radius,
+                        controls?.segments ?? geometry.defaults.segments,
+                        controls?.thetaStart ?? geometry.defaults.thetaStart,
+                        controls?.thetaLength ?? geometry.defaults.thetaLength,
+                    ]}
+                />
+            )}
+
+            {geometry.type === "plane" && (
+                <planeGeometry
+                    args={[
+                        controls?.width ?? geometry.defaults.width,
+                        controls?.height ?? geometry.defaults.height,
+                        controls?.widthSegments ?? geometry.defaults.widthSegments,
+                        controls?.heightSegments ?? geometry.defaults.heightSegments,
+                    ]}
+                />
+            )}
+
+            {geometry.type === "icosahedron" && (
+                <icosahedronGeometry
+                    args={[
+                        controls?.radius ?? geometry.defaults.radius,
+                        controls?.detail ?? geometry.defaults.detail,
+                    ]}
+                />
+            )}
+
+            {geometry.type === "torusKnot" && (
+                <torusKnotGeometry
+                    args={[
+                        controls?.radius ?? geometry.defaults.radius,
+                        controls?.tube ?? geometry.defaults.tube,
+                        controls?.tubularSegments ?? geometry.defaults.tubularSegments,
+                        controls?.radialSegments ?? geometry.defaults.radialSegments,
+                        controls?.p ?? geometry.defaults.p,
+                        controls?.q ?? geometry.defaults.q,
                     ]}
                 />
             )}
 
             <meshStandardMaterial
                 color={geometry.color}
+                wireframe={controls?.wireframe}
+                side={controls?.doubleside ? DoubleSide : FrontSide}
             />
 
         </mesh>

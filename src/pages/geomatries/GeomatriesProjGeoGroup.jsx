@@ -67,6 +67,47 @@ const geometryList = [
             heightSegments: 16,
         },
     },
+    {
+        type: "circle",
+        color: "#4d54b6",
+        defaults: {
+            radius: 1,
+            segments: 32,
+            thetaStart: 0,
+            thetaLength: Math.PI * 2,
+        },
+    },
+    {
+        type: "plane",
+        color: "#b64d79",
+        defaults: {
+            width: 2,
+            height: 2,
+            widthSegments: 1,
+            heightSegments: 1,
+        },
+    },
+    {
+        type: "icosahedron",
+        color: "#904db6",
+        defaults: {
+            radius: 1,
+            detail: 0,
+        },
+    },
+    {
+        type: "torusKnot",
+        color: "#4db6b1",
+        defaults: {
+            radius: 1,
+            tube: 0.4,
+            tubularSegments: 64,
+            radialSegments: 8,
+            p: 2,
+            q: 3,
+
+        },
+    },
 ];
 
 
@@ -148,7 +189,12 @@ export default function GeomatriesProjGeoGroup() {
             step: 0.1,
             render: () => activeType === "box",
         },
+        wireframe: {
+            value: false,
+            render: () => activeType === "box",
+        }
     }, [activeType]);
+
     const capsuleControls = useControls("Capsule", {
         radius: {
             value: 0.5,
@@ -181,11 +227,428 @@ export default function GeomatriesProjGeoGroup() {
             step: 1,
             render: () => activeType === "capsule",
         },
+        wireframe: {
+            value: false,
+            render: () => activeType === "capsule",
+        }
     }, [activeType]);
+
+    const torusControls = useControls(
+        "Torus",
+        {
+            radius: {
+                value: 1,
+                min: 0.1,
+                max: 5,
+                step: 0.1,
+                render: () => activeType === "torus",
+            },
+
+            tube: {
+                value: 0.4,
+                min: 0.05,
+                max: 2,
+                step: 0.05,
+                render: () => activeType === "torus",
+            },
+
+            radialSegments: {
+                value: 16,
+                min: 3,
+                max: 64,
+                step: 1,
+                render: () => activeType === "torus",
+            },
+
+            tubularSegments: {
+                value: 32,
+                min: 3,
+                max: 128,
+                step: 1,
+                render: () => activeType === "torus",
+            },
+
+            arc: {
+                value: Math.PI * 2,
+                min: 0.1,
+                max: Math.PI * 2,
+                step: 0.01,
+                render: () => activeType === "torus",
+            },
+
+            wireframe: {
+                value: false,
+                render: () => activeType === "torus",
+            },
+        },
+        [activeType]
+    );
+
+    const coneControls = useControls(
+        "Cone",
+        {
+            radius: {
+                value: 1,
+                min: 0.1,
+                max: 5,
+                step: 0.1,
+                render: () => activeType === "cone",
+            },
+
+            height: {
+                value: 2,
+                min: 0.1,
+                max: 5,
+                step: 0.1,
+                render: () => activeType === "cone",
+            },
+
+            radialSegments: {
+                value: 16,
+                min: 3,
+                max: 64,
+                step: 1,
+                render: () => activeType === "cone",
+            },
+
+            heightSegments: {
+                value: 1,
+                min: 1,
+                max: 32,
+                step: 1,
+                render: () => activeType === "cone",
+            },
+
+            openEnded: {
+                value: false,
+                render: () => activeType === "cone",
+            },
+
+            wireframe: {
+                value: false,
+                render: () => activeType === "cone",
+            },
+        },
+        [activeType]
+    );
+
+    const cylinderControls = useControls(
+        "Cylinder",
+        {
+            radiusTop: {
+                value: 1,
+                min: 0.1,
+                max: 5,
+                step: 0.1,
+                render: () => activeType === "cylinder",
+            },
+
+            radiusBottom: {
+                value: 1,
+                min: 0.1,
+                max: 5,
+                step: 0.1,
+                render: () => activeType === "cylinder",
+            },
+
+            height: {
+                value: 2,
+                min: 0.1,
+                max: 5,
+                step: 0.1,
+                render: () => activeType === "cylinder",
+            },
+
+            radialSegments: {
+                value: 16,
+                min: 3,
+                max: 64,
+                step: 1,
+                render: () => activeType === "cylinder",
+            },
+
+            heightSegments: {
+                value: 1,
+                min: 1,
+                max: 32,
+                step: 1,
+                render: () => activeType === "cylinder",
+            },
+
+            openEnded: {
+                value: false,
+                render: () => activeType === "cylinder",
+            },
+
+            wireframe: {
+                value: false,
+                render: () => activeType === "cylinder",
+            },
+        },
+        [activeType]
+    );
+
+    const sphereControls = useControls(
+        "Sphere",
+        {
+            radius: {
+                value: 1,
+                min: 0.1,
+                max: 5,
+                step: 0.1,
+                render: () => activeType === "sphere",
+            },
+
+            widthSegments: {
+                value: 16,
+                min: 3,
+                max: 64,
+                step: 1,
+                render: () => activeType === "sphere",
+            },
+
+            heightSegments: {
+                value: 16,
+                min: 2,
+                max: 64,
+                step: 1,
+                render: () => activeType === "sphere",
+            },
+
+            phiStart: {
+                value: 0,
+                min: 0,
+                max: Math.PI * 2,
+                step: 0.01,
+                render: () => activeType === "sphere",
+            },
+
+            phiLength: {
+                value: Math.PI * 2,
+                min: 0.1,
+                max: Math.PI * 2,
+                step: 0.01,
+                render: () => activeType === "sphere",
+            },
+
+            thetaStart: {
+                value: 0,
+                min: 0,
+                max: Math.PI,
+                step: 0.01,
+                render: () => activeType === "sphere",
+            },
+
+            thetaLength: {
+                value: Math.PI,
+                min: 0.1,
+                max: Math.PI,
+                step: 0.01,
+                render: () => activeType === "sphere",
+            },
+
+            wireframe: {
+                value: false,
+                render: () => activeType === "sphere",
+            },
+        },
+        [activeType]
+    );
+
+    const circleControls = useControls(
+        "Circle",
+        {
+            radius: {
+                value: 1,
+                min: 0.1,
+                max: 5,
+                step: 0.1,
+                render: () => activeType === "circle",
+            },
+
+            segments: {
+                value: 32,
+                min: 3,
+                max: 64,
+                step: 1,
+                render: () => activeType === "circle",
+            },
+
+            thetaStart: {
+                value: 0,
+                min: 0,
+                max: Math.PI * 2,
+                step: 0.01,
+                render: () => activeType === "circle",
+            },
+
+            thetaLength: {
+                value: Math.PI * 2,
+                min: 0.1,
+                max: Math.PI * 2,
+                step: 0.01,
+                render: () => activeType === "circle",
+            },
+
+            wireframe: {
+                value: false,
+                render: () => activeType === "circle",
+            },
+            doubleside: {
+                value: true,
+                render: () => activeType === "circle",
+            }
+        },
+        [activeType]
+    );
+
+    const planeControls = useControls(
+        "Plane",
+        {
+            width: {
+                value: 2,
+                min: 0.1,
+                max: 10,
+                step: 0.1,
+                render: () => activeType === "plane",
+            },
+
+            height: {
+                value: 2,
+                min: 0.1,
+                max: 10,
+                step: 0.1,
+                render: () => activeType === "plane",
+            },
+
+            widthSegments: {
+                value: 1,
+                min: 1,
+                max: 64,
+                step: 1,
+                render: () => activeType === "plane",
+            },
+
+            heightSegments: {
+                value: 1,
+                min: 1,
+                max: 64,
+                step: 1,
+                render: () => activeType === "plane",
+            },
+
+            wireframe: {
+                value: false,
+                render: () => activeType === "plane",
+            },
+            doubleside: {
+                value: true,
+                render: () => activeType === "plane",
+            }
+        },
+        [activeType]
+    );
+
+    const icosahedronControls = useControls(
+        "Icosahedron",
+        {
+            radius: {
+                value: 1,
+                min: 0.1,
+                max: 5,
+                step: 0.1,
+                render: () => activeType === "icosahedron",
+            },
+
+            detail: {
+                value: 0,
+                min: 0,
+                max: 5,
+                step: 1,
+                render: () => activeType === "icosahedron",
+            },
+
+            wireframe: {
+                value: false,
+                render: () => activeType === "icosahedron",
+            },
+        },
+        [activeType]
+    );
+
+    const torusKnotControls = useControls(
+        "Torus Knot",
+        {
+            radius: {
+                value: 1,
+                min: 0.1,
+                max: 5,
+                step: 0.1,
+                render: () => activeType === "torusKnot",
+            },
+
+            tube: {
+                value: 0.4,
+                min: 0.05,
+                max: 2,
+                step: 0.05,
+                render: () => activeType === "torusKnot",
+            },
+
+            tubularSegments: {
+                value: 64,
+                min: 3,
+                max: 128,
+                step: 1,
+                render: () => activeType === "torusKnot",
+            },
+
+            radialSegments: {
+                value: 8,
+                min: 3,
+                max: 32,
+                step: 1,
+                render: () => activeType === "torusKnot",
+            },
+
+            p: {
+                value: 2,
+                min: 1,
+                max: 10,
+                step: 1,
+                render: () => activeType === "torusKnot",
+            },
+
+            q: {
+                value: 3,
+                min: 1,
+                max: 10,
+                step: 1,
+                render: () => activeType === "torusKnot",
+            },
+
+            wireframe: {
+                value: false,
+                render: () => activeType === "torusKnot",
+            },
+        },
+        [activeType]
+    );
+
+
+
 
     const controlsByType = {
         box: boxControls,
         capsule: capsuleControls,
+        torus: torusControls,
+        cone: coneControls,
+        cylinder: cylinderControls,
+        sphere: sphereControls,
+        circle: circleControls,
+        plane: planeControls,
+        icosahedron: icosahedronControls,
+        torusKnot: torusKnotControls,
     };
 
 
@@ -219,10 +682,14 @@ export default function GeomatriesProjGeoGroup() {
             >{activeIndex}</Text> */}
 
             <Text
+                 font="/fonts/bangers-v20-latin-regular.woff"
                 fontSize={1}
                 position={[0, 2, 0]}
-                color={"red"}
-            >{geometryList[activeIndex].type}</Text>
+                color={"#fff"}
+                
+            >{geometryList[activeIndex].type}
+                <meshBasicMaterial toneMapped={false} />
+            </Text>
 
         </>
     );
