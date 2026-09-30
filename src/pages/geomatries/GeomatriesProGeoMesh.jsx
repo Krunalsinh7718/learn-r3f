@@ -1,4 +1,4 @@
-import { DoubleSide, FrontSide  } from "three";
+import { DoubleSide, FrontSide, MathUtils } from "three";
 import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 
@@ -16,13 +16,52 @@ export default function GeomatriesProGeoMesh({
 
         meshRef.current.rotation.x += delta * 0.5;
         meshRef.current.rotation.y += delta * 0.8;
+        if (active) {
+            meshRef.current.scale.x = MathUtils.damp(
+                meshRef.current.scale.x,
+                0.5,
+                5,
+                delta
+            );
+             meshRef.current.scale.y = MathUtils.damp(
+                meshRef.current.scale.y,
+                0.5,
+                5,
+                delta
+            );
+             meshRef.current.scale.z = MathUtils.damp(
+                meshRef.current.scale.z,
+                0.5,
+                5,
+                delta
+            );
+        }else{
+             meshRef.current.scale.x = MathUtils.damp(
+                meshRef.current.scale.x,
+                0.25,
+                5,
+                delta
+            );
+             meshRef.current.scale.y = MathUtils.damp(
+                meshRef.current.scale.y,
+                0.25,
+                5,
+                delta
+            );
+             meshRef.current.scale.z = MathUtils.damp(
+                meshRef.current.scale.z,
+                0.25,
+                5,
+                delta
+            );
+        }
     });
 
     return (
         <mesh
             ref={meshRef}
             position={position}
-            scale={active ? 0.5 : 0.3}
+            // scale={active ? 0.5 : 0.3}
             castShadow
         >
             {geometry.type === "box" && (
