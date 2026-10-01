@@ -1,13 +1,12 @@
 import { Canvas } from "@react-three/fiber";
-import GeomatriesProjExperiance from "./GeomatriesProjExperiance";
+import MaterialsProjExperiance from "./MaterialsProjExperiance";
 import { OrbitControls } from "@react-three/drei";
 import { Leva } from "leva";
-import "./app-circular-slider-style.css"
 import { createContext, useContext, useRef } from "react";
 
 const SliderContext = createContext(null);
 
-export default function GeomatriesProjMain() {
+export default function MaterialsProjMain() {
     const nextSlideRef = useRef(null);
     const prevSlideRef = useRef(null);
 
@@ -36,7 +35,7 @@ export default function GeomatriesProjMain() {
         >
             <Canvas
                 shadows
-                className="r3f-geomatries"
+                className="r3f-materials"
                 camera={{
                     fov: 45,
                     near: 0.1,
@@ -46,7 +45,7 @@ export default function GeomatriesProjMain() {
                 }}
             >
                 <OrbitControls />
-                <GeomatriesProjExperiance />
+                <MaterialsProjExperiance />
             </Canvas>
         </SliderContext.Provider>
         <button className="app-circular-slider-nav app-circular-slider-nav-left" onClick={prevSlide} >

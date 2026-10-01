@@ -30,6 +30,7 @@ function Navbar() {
         <li> <Link to="/loaders">Loaders</Link></li>
         <li> <Link to="/cameras">Camera</Link></li>
         <li> <Link to="/geomatries">Geomatries</Link></li>
+        <li> <Link to="/materials">Materials</Link></li>
         </ul>
       </nav>
     </div>

@@ -16,6 +16,7 @@ import GameMain from "./pages/game/GameMain.jsx";
 import LoadersMain from "./pages/loaders/LoadersMain.jsx";
 import CameraMain from "./pages/camera/CameraMain.jsx";
 import GeomatriesProjMain from "./pages/geomatries/GeomatriesProjMain.jsx";
+import MaterialsProjMain from "./pages/materials/MaterialsProjMain.jsx";
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
         <Route path="/loaders" element={<LoadersMain />} />
         <Route path="/cameras" element={<CameraMain />} />
         <Route path="/geomatries" element={<GeomatriesProjMain />} />
+        <Route path="/materials" element={<MaterialsProjMain/>} />
       </Routes>
     </BrowserRouter>
   );

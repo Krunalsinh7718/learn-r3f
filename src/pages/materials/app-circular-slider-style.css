@@ -1,0 +1,45 @@
+/* body{
+    background: #2A7B9B;
+	background-image: linear-gradient(to top,  #000000 20%,#30cfd0 100%);
+} */
+.app-circular-slider-nav{
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    font-size: 65px;
+    color: #fff;
+    transition: 150ms;
+
+    &:hover{
+        color: red;
+    }
+    &:focus{
+        opacity: 0.7;
+    }
+} 
+ .app-circular-slider-nav path{
+    transform-box: fill-box;
+    transition: 600ms;
+    transform-origin: center;
+    stroke-width: 2px;
+    stroke: rgba(255, 255, 255, 0.341);
+  }
+  .app-circular-slider-nav:hover path,
+  .app-circular-slider-nav:focus path{
+    stroke: rgba(255, 255, 255, 1);
+  }
+  
+  .app-circular-slider-nav.app-circular-slider-nav-left:hover path{
+    d: path("M90.5 29L33 66.5L90.5 104");
+  }
+  .app-circular-slider-nav.app-circular-slider-nav-right:hover path{
+    d: path("M43 104L100.5 66.5L43 29");
+  }
+.app-circular-slider-nav-left{
+    left: 0%
+}
+.app-circular-slider-nav-right{
+    right: 0%
+}
