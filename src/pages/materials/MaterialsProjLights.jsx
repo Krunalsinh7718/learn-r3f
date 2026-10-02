@@ -8,9 +8,21 @@ import { Environment, OrbitControls } from "@react-three/drei";
 
 export default function MaterialsProjLights() {
 
-    const { bottomLight, environmentLight } = useControls("Light Settings", {
+    const { bottomLight, bottomLightIntensity, environmentLight, environmentIntensity } = useControls("Light Settings", {
         bottomLight: true,
-        environmentLight: true
+        bottomLightIntensity : {
+            value: 0.5,
+            min: 0,
+            max: 3,
+            step: 0.001
+        },
+        environmentLight: true,
+        environmentIntensity : {
+            value: 1,
+            min: 0,
+            max: 3,
+            step: 0.001
+        }
     })
 
     return <>
@@ -23,7 +35,7 @@ export default function MaterialsProjLights() {
                 position={[0, -0.99, 4]}
                 width={2.5}
                 height={2.5}
-                intensity={0.5}
+                intensity={bottomLightIntensity}
             />
         }
         {
@@ -32,8 +44,8 @@ export default function MaterialsProjLights() {
 
                 background={true}
                 backgroundBlurriness={0.03}
-                backgroundIntensity={2}
-                environmentIntensity={1}
+                backgroundIntensity={environmentIntensity}
+                environmentIntensity={environmentIntensity}
                 files="/images/environments/the_sky_is_on_fire_2k.hdr"
             />
         }

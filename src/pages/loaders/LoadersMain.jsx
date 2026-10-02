@@ -415,8 +415,6 @@ function VortexParticlesLoader({ speed, primaryColor, secondaryColor, particleCo
   );
 }
 
-
-
 export default function LoadersMain() {
   const { activeLoader, selectedPreset } = useControls('Loaders', {
     activeLoader: {
