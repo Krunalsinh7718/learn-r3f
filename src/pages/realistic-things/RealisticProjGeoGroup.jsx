@@ -20,7 +20,7 @@ const geometryList = [
         },
     },
     {
-        type: "capsule",
+        type: "wall",
         color: "#64b5f6",
         defaults: {
             radius: 0.5,
@@ -30,7 +30,7 @@ const geometryList = [
         },
     },
     {
-        type: "torus",
+        type: "pebbles",
         color: "#81c784",
         defaults: {
             radius: 1,
@@ -40,7 +40,7 @@ const geometryList = [
         },
     },
     {
-        type: "cone",
+        type: "cotton",
         color: "#ba68c8",
         defaults: {
             radius: 1,
@@ -49,7 +49,7 @@ const geometryList = [
         },
     },
     {
-        type: "cylinder",
+        type: "metal",
         color: "#ffb74d",
         defaults: {
             radiusTop: 1,
@@ -59,7 +59,7 @@ const geometryList = [
         },
     },
     {
-        type: "sphere",
+        type: "glass",
         color: "#4db6ac",
         defaults: {
             radius: 1,
@@ -693,31 +693,7 @@ export default function RealisticProjGeoGroup() {
                 <meshBasicMaterial toneMapped={false} />
             </Text>
 
-            <mesh position={[0,1,0]} scale={0.5}>
-                <sphereGeometry
-                    args={[1, 320, 320]}
-                    // args={[
-                    //     1.0,
-                    //     1.0,
-                    //     2.0,
-                    //     320,
-                    //     180,
-                    //     false,
-                    // ]}
-                />
-                <meshStandardMaterial
-                    map={woodTextureColor}
-                    metalness={0.0}
-                    displacementMap={woodTextureHeight}
-                    displacementScale={0.1}
-                    normalMap={woodTextureNormal}
-                    normalScale={[0,1]}
-                    roughness={1.0}
-                    roughnessMap={woodTextureRoughness}
-                    aoMap={woodTextureAO}
-                    aoMapIntensity={1}
-                />
-            </mesh>
+         
 
         </>
     );
