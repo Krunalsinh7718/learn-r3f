@@ -161,10 +161,14 @@ export default function MaterialsProGeoMesh({
                     clearcoat={controls?.clearcoat}
                     clearcoatRoughness={controls?.clearcoatRoughness}
                     transmission={controls?.transmission}
+                    iridescence={controls?.iridescence}
+                    iridescenceIOR={controls?.iridescenceIOR}
                     ior={controls?.ior}
                     thickness={controls?.thickness}
                     sheen={controls?.sheen}
                     anisotropy={controls?.anisotropy}
+                    transparent={controls?.transparent}
+                    opacity={controls?.opacity}
                     flatShading={controls?.flatShading}
                     wireframe={controls?.wireframe}
                     side={DoubleSide}

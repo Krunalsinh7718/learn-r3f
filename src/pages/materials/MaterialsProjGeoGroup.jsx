@@ -233,12 +233,12 @@ export default function MaterialsProjGeoGroup() {
         "MeshStandardMaterial",
         {
             color: {
-                value: "#ffb74d",
+                value: "#119397",
                 render: () => activeMaterialType === "standard",
             },
 
             metalness: {
-                value: 0,
+                value: 0.8,
                 min: 0,
                 max: 1,
                 step: 0.01,
@@ -246,7 +246,7 @@ export default function MaterialsProjGeoGroup() {
             },
 
             roughness: {
-                value: 0.5,
+                value: 0.1,
                 min: 0,
                 max: 1,
                 step: 0.01,
@@ -290,7 +290,7 @@ export default function MaterialsProjGeoGroup() {
         "MeshPhysicalMaterial",
         {
             color: {
-                value: "#4db6ac",
+                value: "#fff",
                 render: () => activeMaterialType === "physical",
             },
 
@@ -303,7 +303,7 @@ export default function MaterialsProjGeoGroup() {
             },
 
             roughness: {
-                value: 0.3,
+                value: 0,
                 min: 0,
                 max: 1,
                 step: 0.01,
@@ -311,7 +311,7 @@ export default function MaterialsProjGeoGroup() {
             },
 
             envMapIntensity: {
-                value: 1,
+                value: 0,
                 min: 0,
                 max: 5,
                 step: 0.01,
@@ -335,15 +335,28 @@ export default function MaterialsProjGeoGroup() {
             },
 
             transmission: {
-                value: 0,
+                value: 1,
                 min: 0,
                 max: 1,
                 step: 0.01,
                 render: () => activeMaterialType === "physical",
             },
-
+            iridescence: {
+                value: 1,
+                min: 0,
+                max: 1,
+                step: 0.01,
+                render: () => activeMaterialType === "physical",
+            },
+            iridescenceIOR: {
+                value: 1.3,
+                min: 0,
+                max: 3,
+                step: 0.01,
+                render: () => activeMaterialType === "physical",
+            },
             ior: {
-                value: 1.5,
+                value: 0,
                 min: 1,
                 max: 2.5,
                 step: 0.01,
@@ -383,6 +396,21 @@ export default function MaterialsProjGeoGroup() {
                 value: false,
                 render: () => activeMaterialType === "physical",
             },
+
+            transparent: {
+                value: false,
+                render: () => activeMaterialType === "physical",
+            },
+
+            opacity: {
+                value: 1,
+                min: 0,
+                max: 1,
+                step: 0.01,
+                render: () => activeMaterialType === "physical",
+            },
+
+
         },
         [activeMaterialType]
     );
@@ -508,7 +536,12 @@ export default function MaterialsProjGeoGroup() {
                 color={"#fff"}
 
             >{materialList[activeIndex].type}
-                <meshBasicMaterial toneMapped={false} />
+                <meshBasicMaterial color="white"
+                    // depthTest={false}
+                    // depthWrite={false}
+                    toneMapped={false} 
+                    side={THREE.DoubleSide}
+                />
             </Text>
 
         </>
